@@ -65,11 +65,10 @@ function StageDot({
   progress,
 }: {
   index: number;
-  progress: ReturnType<typeof useTransform<number, number>>;
+  progress: import("framer-motion").MotionValue<number>;
 }) {
-  const active = useTransform(progress, (v) => (v > index ? 1 : 0));
-  const scale = useTransform(active, [0, 1], [1, 1.4]);
-  const opacity = useTransform(active, [0, 1], [0.35, 1]);
+  const scale = useTransform(progress, (v) => (v > index ? 1.4 : 1));
+  const opacity = useTransform(progress, (v) => (v > index ? 1 : 0.35));
   return (
     <motion.span
       className="relative z-10 grid h-8 w-8 place-items-center rounded-full border border-line bg-bg"
