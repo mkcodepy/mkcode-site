@@ -43,8 +43,8 @@ export function Hero() {
             </div>
 
             <h1
-              className="mt-6 font-display font-semibold leading-[1.02] tracking-[-0.03em]"
-              style={{ fontSize: "clamp(2.5rem, 5.4vw, 5rem)" }}
+              className="mt-5 font-display font-semibold leading-[1.02] tracking-[-0.03em] md:mt-6"
+              style={{ fontSize: "clamp(2.1rem, 5.4vw, 5rem)" }}
             >
               <span className="block">{headA}</span>
               <span className="relative inline-block text-ink">
@@ -62,7 +62,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.4 }}
-              className="mt-6 max-w-xl text-lg leading-relaxed text-ink-2"
+              className="mt-5 max-w-xl text-[16px] leading-relaxed text-ink-2 md:mt-6 md:text-lg"
             >
               {h.paragraph}
             </motion.p>
@@ -71,15 +71,15 @@ export function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.6 }}
-              className="mt-8 flex flex-wrap items-center gap-3"
+              className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center md:mt-8"
             >
-              <Link to={pathFor(locale, "contact")}>
-                <Button variant="primary" size="lg">
+              <Link to={pathFor(locale, "contact")} className="block sm:inline-block">
+                <Button variant="primary" size="lg" className="w-full sm:w-auto">
                   {h.primaryCta}
                 </Button>
               </Link>
-              <Link to={pathFor(locale, "capabilities")}>
-                <Button variant="secondary" size="lg">
+              <Link to={pathFor(locale, "capabilities")} className="block sm:inline-block">
+                <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                   {h.secondaryCta}
                 </Button>
               </Link>
