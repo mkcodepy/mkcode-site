@@ -77,15 +77,19 @@ function MethodLine({
   description: string;
   activeIndex: import("framer-motion").MotionValue<number>;
 }) {
-  const statusColor = useTransform(activeIndex, (v) => {
-    if (v > index + 1) return "var(--br-green)";
-    if (v > index) return "var(--cyan)";
-    return "var(--ink-3)";
-  });
-  const statusText = useTransform(activeIndex, (v) => {
-    if (v > index + 1) return "ready";
-    if (v > index) return "…run";
-    return "pending";
+  const [statusColor, setStatusColor] = useState("var(--ink-3)");
+  const [statusText, setStatusText] = useState("pending");
+  useMotionValueEvent(activeIndex, "change", (v) => {
+    if (v > index + 1) {
+      setStatusColor("var(--br-green)");
+      setStatusText("ready");
+    } else if (v > index) {
+      setStatusColor("var(--cyan)");
+      setStatusText("…run");
+    } else {
+      setStatusColor("var(--ink-3)");
+      setStatusText("pending");
+    }
   });
   const rowOpacity = useTransform(activeIndex, (v) =>
     v > index ? 1 : 0.55,
