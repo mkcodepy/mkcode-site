@@ -227,4 +227,4 @@ export const esPY = {
     terms: "Términos",
   },
   langSwitch: { label: "Idioma", es: "ES", pt: "PT" },
-} as const;
+};
