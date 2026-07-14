@@ -111,11 +111,11 @@ function MethodLine({
         </span>
       </span>
       <span className="flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] uppercase">
-        <motion.span
-          className="inline-block h-1.5 w-1.5 rounded-full"
+        <span
+          className="inline-block h-1.5 w-1.5 rounded-full transition-colors"
           style={{ backgroundColor: statusColor }}
         />
-        <motion.span style={{ color: statusColor }}>{statusText}</motion.span>
+        <span className="transition-colors" style={{ color: statusColor }}>{statusText}</span>
       </span>
     </motion.li>
   );
