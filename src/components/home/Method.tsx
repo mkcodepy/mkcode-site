@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
 import { Container, Eyebrow } from "@/components/layout/Container";
 import { SectionBoot } from "@/components/fx/SectionBoot";
 import { ScrambleText } from "@/components/fx/ScrambleText";
