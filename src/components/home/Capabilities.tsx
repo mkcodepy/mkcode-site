@@ -7,22 +7,22 @@ export function Capabilities() {
   const dict = getDict(useLocale());
   const c = dict.capabilities;
   return (
-    <section className="relative py-28 md:py-36" id="capabilities">
+    <section className="relative py-16 sm:py-20 md:py-28 lg:py-36" id="capabilities">
       <Container>
-        <div className="grid gap-10 md:grid-cols-[1.2fr_1fr]">
+        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:gap-10">
           <div>
             <Eyebrow>CAPABILITIES</Eyebrow>
             <h2
               className="mt-4 max-w-3xl font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(1.85rem, 3.4vw, 3rem)" }}
+              style={{ fontSize: "clamp(1.75rem, 3.4vw, 3rem)" }}
             >
               {c.heading}
             </h2>
           </div>
-          <p className="max-w-md self-end text-ink-2">{c.supporting}</p>
+          <p className="max-w-md self-end text-[15px] leading-relaxed text-ink-2 md:text-base">{c.supporting}</p>
         </div>
 
-        <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-2">
+        <div className="mt-10 grid gap-4 md:mt-16 md:grid-cols-2 lg:grid-cols-2">
           {c.items.map((item, i) => (
             <motion.article
               key={item.n}
@@ -30,7 +30,7 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: (i % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative overflow-hidden rounded-lg border border-line bg-surface/40 p-8 transition-colors hover:border-line-2"
+              className="group relative overflow-hidden rounded-lg border border-line bg-surface/40 p-6 transition-colors hover:border-line-2 md:p-8"
             >
               {/* accent line */}
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
@@ -42,14 +42,14 @@ export function Capabilities() {
                 <VisualBadge index={i} />
               </div>
 
-              <h3 className="mt-8 font-display text-2xl font-semibold tracking-[-0.01em] text-ink">
+              <h3 className="mt-6 font-display text-xl font-semibold tracking-[-0.01em] text-ink md:mt-8 md:text-2xl">
                 {item.title}
               </h3>
-              <p className="mt-3 max-w-md text-[15px] leading-relaxed text-ink-2">
+              <p className="mt-3 max-w-md text-[14.5px] leading-relaxed text-ink-2 md:text-[15px]">
                 {item.description}
               </p>
 
-              <ul className="mt-8 flex flex-wrap gap-1.5">
+              <ul className="mt-6 flex flex-wrap gap-1.5 md:mt-8">
                 {item.tags.map((tag) => (
                   <li
                     key={tag}

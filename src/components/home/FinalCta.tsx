@@ -10,12 +10,12 @@ export function FinalCta() {
   const dict = getDict(locale);
   const c = dict.finalCta;
   return (
-    <section className="relative overflow-hidden py-28 md:py-36">
+    <section className="relative overflow-hidden py-16 sm:py-20 md:py-28 lg:py-36">
       <div className="pointer-events-none absolute inset-0 mk-grid-lines opacity-30" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[400px] bg-gradient-to-t from-brand/[0.1] via-transparent to-transparent" />
 
       <Container>
-        <div className="relative rounded-lg border border-line-2 bg-surface/40 p-8 backdrop-blur-md md:p-14">
+        <div className="relative rounded-lg border border-line-2 bg-surface/40 p-6 backdrop-blur-md sm:p-8 md:p-14">
           {/* incoming route */}
           <svg viewBox="0 0 800 40" className="absolute -top-6 left-0 h-6 w-full" aria-hidden>
             <path
@@ -36,20 +36,20 @@ export function FinalCta() {
               </div>
               <h2
                 className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-                style={{ fontSize: "clamp(1.85rem, 3.6vw, 3.2rem)" }}
+                style={{ fontSize: "clamp(1.75rem, 3.6vw, 3.2rem)" }}
               >
                 {c.heading}
               </h2>
-              <p className="mt-6 max-w-xl text-ink-2">{c.supporting}</p>
+              <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-2 md:mt-6 md:text-base">{c.supporting}</p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link to={pathFor(locale, "contact")}>
-                  <Button variant="primary" size="lg">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mt-8">
+                <Link to={pathFor(locale, "contact")} className="block sm:inline-block">
+                  <Button variant="primary" size="lg" className="w-full sm:w-auto">
                     {c.primary}
                   </Button>
                 </Link>
-                <Link to={pathFor(locale, "contact")}>
-                  <Button variant="secondary" size="lg">
+                <Link to={pathFor(locale, "contact")} className="block sm:inline-block">
+                  <Button variant="secondary" size="lg" className="w-full sm:w-auto">
                     {c.secondary}
                   </Button>
                 </Link>
