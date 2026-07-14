@@ -1,115 +1,94 @@
+# Efeitos Matrix + terminal em todo o site
 
-# MK CODE — Plan
+Objetivo: transformar o MK CODE numa experiência viva de "engenharia digital em execução". Chuva de código Matrix sutil de fundo, texto que se digita sozinho, glyphs que embaralham antes de assentar, cursores piscando, scanlines, e blocos que "bootam" ao entrar na viewport — sem virar cyberpunk cafona. Tudo respeita `prefers-reduced-motion`.
 
-## 1. Brand interpretation
+## Camadas de efeito
 
-MK CODE is a **selective digital engineering studio**, not an agency. Brazilian engineering executed from Encarnación, Paraguay. The site must feel like the headquarters of a boutique studio that ships production software — precise, dark, architectural, confident without being loud. The conversion is a **qualified WhatsApp conversation**, not a lead funnel.
+**1. Fundo global — Matrix Rain (canvas)**
+- Componente `<MatrixRain />` em canvas, montado uma vez no `__root.tsx` atrás do `<main>`, `position: fixed`, `z-index: -1`.
+- Glyphs: mix de katakana + `01` + símbolos `{ } < > / $ _`.
+- Cores em duas camadas: azul MK (`--brand`) dominante + ciano (`--cyan`) para o "head" de cada coluna. Nada de verde neon padrão — mantém a identidade.
+- Densidade baixa (~8% opacity), velocidade lenta, respira. Pausa quando a aba está oculta e quando `prefers-reduced-motion`.
 
-## 2. Creative concept — "BR → PY / Digital Infrastructure Bridge"
+**2. Hero — boot sequence**
+- Eyebrow "INGENIERÍA BRASILEÑA · CONSTRUIDA EN PARAGUAY" entra com efeito **typewriter** + cursor `▋` piscando.
+- H1 "Lo que tu empresa necesita / no siempre viene listo." usa **scramble/decrypt**: cada letra embaralha por glyphs aleatórios (~600ms) antes de assentar. A segunda linha assenta depois da primeira.
+- Painel MK.SYS ganha uma **linha de boot** no topo que digita `> mk.sys init --region=py --status=online` antes do resto aparecer.
+- Terminal box já existente ganha **cursor piscando** real depois do último caractere e as checks `✓` aparecem uma a uma, com delay staggered.
+- Curva BR→PY: o path SVG desenha sozinho (`stroke-dasharray` animado) e o dot central percorre a curva em loop lento.
 
-A continuous digital route runs across the site: originates at a BR node in the hero, threads through every section as a subtle infrastructure line, and terminates at a PY production node in the final CTA. National colors appear only as micro-signal accents on nodes; electric blue dominates. No flags, no maps, no handshakes — represented through nodes, routes, packets, deployment states, and technical coordinates.
+**3. Section reveal — "bootando" no scroll**
+Cada seção principal (Manifesto, Capabilities, Selected Systems, Method, Bridge, Founder, Selectivity, FinalCta) recebe um wrapper `<SectionBoot>`:
+- Ao entrar na viewport, mostra por ~250ms uma micro-headline mono `[ loading section: capabilities ]` que dá fade e some.
+- Título da seção usa scramble reveal (mesma técnica do H1, mais rápido, ~350ms).
+- Cards/itens internos entram em stagger vertical (translateY 12px → 0, opacity 0 → 1, 60ms entre itens).
 
-## 3. Visual direction
+**4. Signal strip — ticker vivo**
+A faixa horizontal "01 ARQUITECTURA A MEDIDA / 02 ACCESO DIRECTO..." vira um marquee lento e contínuo, com um LED verde piscando à esquerda (`● live`).
 
-- **Dark cinematic editorial.** Backgrounds `#05070B` / `#080D15` / `#0B1320`. Electric blue `#1677FF` dominant, cyan `#69D5FF` for highlights.
-- **Asymmetry over centered stacks.** Alternating editorial left-aligned blocks, technical grids, horizontal tracks, vertical timelines, and full-width statements.
-- **Restrained radius** (6/10/16), thin borders, controlled glows, no pill everything.
-- **Type:** Sora Variable (display), Manrope Variable (body), JetBrains Mono (labels). Fluid `clamp()` sizing.
-- **Motion:** slow data pulses, staggered reveals, scroll-linked timeline, no particle storms / WebGL / video backgrounds. Full `prefers-reduced-motion` support.
+**5. Selected Systems / cards**
+- Ao hover: borda ganha um sweep de linha ciano (efeito de "scan"), o número do card conta rápido de 000 até o valor, e um `> open system_XX.md` aparece no rodapé do card com typewriter.
+- Idle: leve grain/scanline sobreposta (usar a `mk-noise` utility que já existe).
 
-## 4. Page architecture
+**6. Bridge (BR → PY)**
+- Path do SVG anima o desenho no scroll (scroll-linked, não só uma vez).
+- Pacotes de dados (dots ciano) viajam da esquerda pra direita em loop, com trail curto.
+- Labels BR/ORIGIN e PY/PROD piscam `● ONLINE` sincronizados.
 
-Routes (Spanish primary, Portuguese secondary):
+**7. Founder / Manifesto**
+Bloco de texto grande usa **word-by-word reveal** no scroll (cada palavra ganha opacity de 0.15 → 1 conforme entra no viewport central) — dá peso editorial sem virar animação genérica.
 
+**8. Method (5 passos UNDERSTAND → EVOLVE)**
+Cada passo é uma linha de terminal:
 ```
-/                     → redirect to /es
-/es                   → Home
-/es/capacidades       → Capabilities
-/es/proyectos         → Selected systems index
-/es/proyectos/:slug   → Project detail
-/es/mk-code           → Founder / studio
-/es/contacto          → Contact
-/pt, /pt/capacidades, /pt/projetos, /pt/projetos/:slug, /pt/mk-code, /pt/contato
+> 01_understand  ready
+> 02_architect   ready
+> 03_build       ▋
+> 04_deploy      pending
+> 05_evolve      pending
+```
+Ao scrollar, os status vão mudando de `pending` → `▋` (cursor ativo) → `ready` em cascata.
+
+**9. Header**
+- Wordmark `MK CODE` ganha um subtle glitch (offset RGB rápido) ao carregar a página.
+- Nav links: hover mostra `> ` prefix animado em mono.
+- Language switch ES/PT: transição com scramble curto do texto do idioma alvo.
+
+**10. Footer**
+Termina o site com um bloco terminal: `> connection stable · encarnación-py · [timestamp local]`, timestamp atualiza a cada segundo.
+
+## Detalhes técnicos
+
+- **Motor de animação:** framer-motion (já instalado) + hooks nativos para o canvas e para o typewriter/scramble.
+- **Novo:** `src/lib/motion/useScramble.ts`, `useTypewriter.ts`, `useInView.ts` (wrapper leve), `MatrixRain.tsx`, `SectionBoot.tsx`, `TerminalLine.tsx`, `Cursor.tsx`.
+- **Perf:** todas as animações desligam via `matchMedia('(prefers-reduced-motion: reduce)')`. O canvas usa `requestAnimationFrame`, pausa em `document.hidden`, limita a devicePixelRatio ≤ 2. Scramble e typewriter cancelam quando desmontam.
+- **Sem novos pacotes.** Tudo com o que já existe.
+
+## Diagrama do stacking global
+
+```text
+┌─ RootShell ────────────────────────────────┐
+│  <MatrixRain />          (fixed, z:-1)     │
+│  <Header />                                 │
+│  <main>                                     │
+│    <SectionBoot> Hero </SectionBoot>        │
+│    <SectionBoot> Manifesto </SectionBoot>   │
+│    ...                                      │
+│  </main>                                    │
+│  <Footer />                                 │
+└─────────────────────────────────────────────┘
 ```
 
-Home section flow (matches the visitor journey in §13):
-1. Header (transparent → translucent on scroll)
-2. Hero (asymmetric 55/45 with system visualization + BR node origin)
-3. Positioning signal strip
-4. Manifesto (editorial 01→05 sequence, scroll-active)
-5. Capabilities (4 modules, each with its own technical composition)
-6. Selected systems (3 project archetypes + confidentiality statement)
-7. Method (5-stage horizontal timeline / vertical on mobile)
-8. BR → PY bridge (hero visual moment, dual nodes)
-9. Founder / direct responsibility
-10. Selectivity statement
-11. Final conversion (route terminates at PY production node)
-12. Footer
+## Fora do escopo (evitar cair em cliché)
 
-## 5. Component system
+- Sem chuva verde clássica do filme — usar paleta MK.
+- Sem áudio.
+- Sem cursor customizado do mouse.
+- Sem partículas flutuando aleatórias.
+- Sem "hackerman" glitch violento no conteúdo — glitches só em micro-momentos (logo no load, hover de card).
 
-Design tokens in `src/styles.css` (`@theme` + `:root`): color, spacing, container, radius, shadow, blur, motion duration/easing, z-index, focus rings.
+## Aceite
 
-Reusable components under `src/components/`:
-- `brand/` — `Monogram.tsx`, `Wordmark.tsx`, `Favicon` sources
-- `layout/` — `Header.tsx`, `MobileMenu.tsx`, `Footer.tsx`, `Container.tsx`, `SectionEyebrow.tsx`
-- `system/` — `SystemNode.tsx`, `RouteLine.tsx`, `DataPulse.tsx`, `Console.tsx`, `StatusIndicator.tsx`, `ArchitectureDiagram.tsx` (the reusable BR→PY visual primitives)
-- `home/` — `Hero.tsx`, `SignalStrip.tsx`, `Manifesto.tsx`, `Capabilities.tsx`, `SelectedSystems.tsx`, `Method.tsx`, `BridgeSection.tsx`, `Founder.tsx`, `Selectivity.tsx`, `FinalCTA.tsx`
-- `ui/` — `Button.tsx` (primary/secondary/ghost), `Tag.tsx`, `LangSwitch.tsx`, `CommandHint.tsx`
-- `contact/` — `ContactForm.tsx` (Zod validated, WhatsApp handoff)
-
-## 6. Bilingual content strategy
-
-- Typed dictionary at `src/content/i18n.ts` with namespaces (`nav`, `hero`, `manifesto`, `capabilities`, `projects`, `method`, `bridge`, `founder`, `selectivity`, `finalCTA`, `contact`, `footer`).
-- Two locale files: `src/content/es-PY.ts`, `src/content/pt-BR.ts`. Strictly typed — TS enforces parity.
-- Voseo enforced in Spanish. Natural Brazilian Portuguese, not literal translations.
-- Locale resolved from URL segment via a route param `$lang` (`/$lang/...`) with a validated union `"es" | "pt"`. `useLocale()` hook wraps `Route.useParams()`.
-- Language selector preserves current path when switching; saves preference to `localStorage` (read in `useEffect`, not in SSR).
-- `<html lang>`, canonical, `hreflang="es-PY" / "pt-BR" / "x-default"` set per route via `head()`.
-
-## 7. Mobile strategy
-
-- Hero: copy first, then a recomposed (not scaled) system visualization with fewer animated lines.
-- Header collapses to monogram + lang + menu; full-panel menu with focus trap, ESC close, ARIA.
-- Method timeline pivots to vertical.
-- Capabilities become vertical cards with all detail visible (no hover-only content).
-- BR → PY bridge remains centerpiece but simplified.
-- Fluid type via `clamp()`; no horizontal overflow anywhere.
-
-## 8. Animation strategy
-
-- **Framer Motion** for reveals, staggered text, scroll-linked timeline progress.
-- **SVG-based** system visualizations (BR→PY route, nodes, pulses) — no WebGL.
-- Data pulses via animated SVG `strokeDashoffset` on route lines.
-- Scroll-active method stage using `useScroll` / `useTransform`.
-- All motion honors `prefers-reduced-motion` with a static fallback.
-
-## 9. Technical architecture
-
-- **TanStack Start + Tailwind v4** (existing stack). No backend for v1.
-- Routes reorganized under `src/routes/$lang/...` with a `$lang` layout that validates the segment, sets `<html lang>`, and provides locale context.
-- Root `/` route redirects to `/es`.
-- **Config**: `src/config/site.ts` with the provided `siteConfig` object (WhatsApp placeholder `595XXXXXXXXX` kept until user provides real number).
-- **Data**: `src/data/projects.ts` with typed representative projects (no fake clients).
-- **Contact form**: Zod validation → formats a bilingual project brief → opens `wa.me/<number>?text=...` with `encodeURIComponent`. `mailto:` fallback. No fake success states.
-- **SEO**: per-route `head()` with unique title/description/og, JSON-LD Organization on root, hreflang alternates, canonical self-references.
-- **Assets**: `src/assets/` for future founder photo and social preview; MK monogram as reusable SVG component; `favicon.svg` generated from the same monogram.
-- **Accessibility**: semantic landmarks, visible focus rings, keyboard-navigable capabilities, ARIA on menu/form, contrast checked in dark palette.
-
-## 10. Milestones (post-approval)
-
-1. **Foundation** — tokens, typography, brand SVG (monogram/wordmark/favicon), layout primitives, locale routing + i18n dictionary, header/footer/mobile menu, language switch.
-2. **Home part A** — hero (asymmetric + system visualization), signal strip, manifesto with scroll-active sequence.
-3. **Home part B** — capabilities (4 distinct compositions), selected systems (3 archetypes + confidentiality), method timeline.
-4. **Home part C** — BR → PY bridge section, founder, selectivity, final CTA with route terminus.
-5. **Inner pages** — `/capacidades`, `/proyectos` + `/proyectos/:slug`, `/mk-code`, `/contacto` with WhatsApp handoff.
-6. **Polish** — SEO metadata per route, hreflang, JSON-LD, reduced-motion pass, responsive QA, accessibility audit.
-
-## 11. Assumptions (no blocking questions)
-
-- **WhatsApp number**: using the `595XXXXXXXXX` placeholder from your `siteConfig`; you can drop the real number into `src/config/site.ts` at any time and every CTA updates.
-- **Founder photo**: monogram + directional lighting placeholder in `Founder.tsx` with a single import point to swap for the real photo later.
-- **Representative projects**: three archetypes exactly as specified — no invented clients, logos, or metrics.
-- **Social preview**: a monogram-based OG image will be generated for the root; leaf routes omit `og:image` until real imagery exists.
-
-If you approve, I'll switch to build mode and start with Milestone 1.
+- Home `/es` e `/pt` com todos os efeitos acima ativos e suaves em 60fps.
+- `prefers-reduced-motion: reduce` desliga rain, scramble, typewriter, marquee — mantém apenas fades curtos.
+- Sem regressão visual: layout, cores e tipografia atuais preservados.
