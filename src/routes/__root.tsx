@@ -168,8 +168,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {showChrome ? <MatrixRain /> : null}
       {showChrome ? <Header /> : null}
-      <main className="min-h-screen">
+      <main className="relative z-10 min-h-screen">
         <Outlet />
       </main>
       {showChrome ? <Footer /> : null}
