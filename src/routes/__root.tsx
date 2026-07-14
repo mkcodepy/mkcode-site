@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MatrixRain } from "@/components/fx/MatrixRain";
 import { isLocale, HTML_LANG } from "@/content/i18n";
 
 function NotFoundComponent() {
@@ -167,8 +168,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {showChrome ? <MatrixRain /> : null}
       {showChrome ? <Header /> : null}
-      <main className="min-h-screen">
+      <main className="relative z-10 min-h-screen">
         <Outlet />
       </main>
       {showChrome ? <Footer /> : null}
