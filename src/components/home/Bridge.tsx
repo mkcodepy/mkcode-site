@@ -8,7 +8,7 @@ export function Bridge() {
   const b = dict.bridge;
 
   return (
-    <section className="relative overflow-hidden py-28 md:py-36">
+    <section className="relative overflow-hidden py-16 sm:py-20 md:py-28 lg:py-36">
       <div className="pointer-events-none absolute inset-0 mk-grid-lines opacity-30" />
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand/[0.07] blur-[140px]" />
 
@@ -17,22 +17,22 @@ export function Bridge() {
           <Eyebrow className="justify-center">{b.eyebrow}</Eyebrow>
           <h2
             className="mt-4 font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.9rem, 3.8vw, 3.4rem)" }}
+            style={{ fontSize: "clamp(1.75rem, 3.8vw, 3.4rem)" }}
           >
             {b.heading}
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-ink-2">{b.p1}</p>
-          <p className="mx-auto mt-3 max-w-2xl text-ink-3">{b.p2}</p>
+          <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-2 md:text-base">{b.p1}</p>
+          <p className="mx-auto mt-3 max-w-2xl text-[14.5px] leading-relaxed text-ink-3 md:text-base">{b.p2}</p>
         </div>
 
         {/* Bridge visual */}
-        <div className="relative mt-16">
+        <div className="relative mt-10 md:mt-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative rounded-lg border border-line bg-surface/30 p-8 backdrop-blur-sm md:p-12"
+            className="relative rounded-lg border border-line bg-surface/30 p-5 backdrop-blur-sm sm:p-8 md:p-12"
           >
             <div className="grid items-center gap-10 md:grid-cols-[1fr_1.6fr_1fr]">
               <BridgeNode code="BR" label={b.leftNode.label} accent="br" />
@@ -80,17 +80,17 @@ export function Bridge() {
               <BridgeNode code="PY" label={b.rightNode.label} accent="py" />
             </div>
 
-            <div className="mt-10 grid grid-cols-3 gap-4 font-mono text-[10px] tracking-[0.22em] text-ink-3">
+            <div className="mt-8 grid grid-cols-1 gap-3 font-mono text-[10px] tracking-[0.2em] text-ink-3 sm:grid-cols-3 sm:gap-4 sm:tracking-[0.22em] md:mt-10">
               <div className="flex items-center gap-2">
-                <span className="inline-block h-2 w-2 rounded-full bg-br-green" />
+                <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-br-green" />
                 LATENCY / OPTIMAL
               </div>
-              <div className="flex items-center gap-2 justify-center">
-                <span className="inline-block h-2 w-2 rounded-full bg-cyan" />
+              <div className="flex items-center gap-2 sm:justify-center">
+                <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-cyan" />
                 BRIDGE / ACTIVE
               </div>
-              <div className="flex items-center gap-2 justify-end">
-                <span className="inline-block h-2 w-2 rounded-full bg-py-red" />
+              <div className="flex items-center gap-2 sm:justify-end">
+                <span className="inline-block h-2 w-2 shrink-0 rounded-full bg-py-red" />
                 ROUTE / SECURE
               </div>
             </div>

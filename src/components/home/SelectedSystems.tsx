@@ -12,20 +12,20 @@ export function SelectedSystems() {
   const dict = getDict(locale);
   const p = dict.projects;
   return (
-    <section className="relative py-28 md:py-36" id="projects">
+    <section className="relative py-16 sm:py-20 md:py-28 lg:py-36" id="projects">
       <Container>
         <div className="max-w-3xl">
           <Eyebrow>{p.eyebrow}</Eyebrow>
           <h2
             className="mt-4 font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.85rem, 3.4vw, 3rem)" }}
+            style={{ fontSize: "clamp(1.75rem, 3.4vw, 3rem)" }}
           >
             {p.heading}
           </h2>
-          <p className="mt-6 text-ink-2">{p.supporting}</p>
+          <p className="mt-6 text-[15px] leading-relaxed text-ink-2 md:text-base">{p.supporting}</p>
         </div>
 
-        <div className="mt-14 space-y-4">
+        <div className="mt-10 space-y-4 md:mt-14">
           {projects.map((proj, i) => (
             <motion.div
               key={proj.slug}
@@ -33,16 +33,16 @@ export function SelectedSystems() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: i * 0.06 }}
-              className="group grid gap-6 rounded-lg border border-line bg-surface/40 p-8 transition-colors hover:border-line-2 lg:grid-cols-[1fr_1.2fr] lg:items-center"
+              className="group grid gap-6 rounded-lg border border-line bg-surface/40 p-6 transition-colors hover:border-line-2 md:p-8 lg:grid-cols-[1fr_1.2fr] lg:items-center"
             >
               <div>
                 <div className="font-mono text-[10.5px] tracking-[0.22em] text-cyan">
                   {proj.category}
                 </div>
-                <h3 className="mt-4 font-display text-2xl font-semibold tracking-[-0.01em] text-ink lg:text-3xl">
+                <h3 className="mt-4 font-display text-xl font-semibold tracking-[-0.01em] text-ink md:text-2xl lg:text-3xl">
                   {proj.title[locale]}
                 </h3>
-                <p className="mt-4 max-w-lg text-ink-2">{proj.description[locale]}</p>
+                <p className="mt-4 max-w-lg text-[14.5px] leading-relaxed text-ink-2 md:text-base">{proj.description[locale]}</p>
                 <Link
                   to="/$lang/proyectos/$slug"
                   params={{ lang: locale, slug: proj.slug }}
@@ -58,11 +58,11 @@ export function SelectedSystems() {
           ))}
         </div>
 
-        <div className="mt-12 rounded-lg border border-line bg-bg-2 p-8 md:flex md:items-center md:justify-between md:gap-8">
-          <p className="max-w-xl font-display text-lg leading-snug tracking-[-0.01em] text-ink md:text-xl">
+        <div className="mt-10 rounded-lg border border-line bg-bg-2 p-6 md:mt-12 md:flex md:items-center md:justify-between md:gap-8 md:p-8">
+          <p className="max-w-xl font-display text-base leading-snug tracking-[-0.01em] text-ink md:text-lg lg:text-xl">
             {p.confidentiality}
           </p>
-          <Link to={pathFor(locale, "contact")} className="mt-6 inline-block md:mt-0">
+          <Link to={pathFor(locale, "contact")} className="mt-5 inline-block md:mt-0">
             <Button variant="secondary">{p.confidentialityCta}</Button>
           </Link>
         </div>
