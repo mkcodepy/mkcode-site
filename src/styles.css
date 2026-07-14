@@ -175,10 +175,127 @@
   50% { opacity: 0.2; }
 }
 
+/* ---- Matrix / terminal FX ---- */
+
+@keyframes mk-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+.mk-marquee-track {
+  animation: mk-marquee 40s linear infinite;
+  will-change: transform;
+}
+.mk-marquee:hover .mk-marquee-track {
+  animation-play-state: paused;
+}
+
+/* Card hover scan sweep — a single-line ciano bar travels top→bottom */
+@utility mk-scan {
+  position: relative;
+  overflow: hidden;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(105, 213, 255, 0) 40%,
+      rgba(105, 213, 255, 0.28) 50%,
+      rgba(105, 213, 255, 0) 60%,
+      transparent 100%
+    );
+    transform: translateY(-100%);
+    transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  &:hover::before {
+    transform: translateY(100%);
+  }
+}
+
+/* Terminal-line status bar with animated dot */
+@utility mk-status-active {
+  color: var(--cyan);
+  &::after {
+    content: "▋";
+    display: inline-block;
+    margin-left: 2px;
+    animation: mk-blink 0.9s steps(1) infinite;
+  }
+}
+
+/* Wordmark glitch — RGB split on mount, subtle */
+@keyframes mk-glitch-r {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { transform: translate(1.2px, -1px); opacity: 0.9; }
+  30%  { transform: translate(-1px, 1px); opacity: 0.6; }
+  60%  { transform: translate(0.5px, 0); opacity: 0.35; }
+  100% { transform: translate(0, 0); opacity: 0; }
+}
+@keyframes mk-glitch-b {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  15%  { transform: translate(-1.2px, 1px); opacity: 0.9; }
+  40%  { transform: translate(1px, -0.5px); opacity: 0.55; }
+  70%  { transform: translate(-0.4px, 0); opacity: 0.3; }
+  100% { transform: translate(0, 0); opacity: 0; }
+}
+.mk-glitch {
+  position: relative;
+  isolation: isolate;
+}
+.mk-glitch::before,
+.mk-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.mk-glitch::before {
+  color: #ff3860;
+  animation: mk-glitch-r 900ms ease-out 200ms 1 both;
+}
+.mk-glitch::after {
+  color: #69d5ff;
+  animation: mk-glitch-b 900ms ease-out 200ms 1 both;
+}
+
+/* Global scanline overlay — very subtle, additive */
+@utility mk-scanlines {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02) 0,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode: overlay;
+  }
+}
+
+/* Word-by-word reveal container */
+.mk-word {
+  display: inline-block;
+  opacity: 0.14;
+  transition: opacity 320ms ease-out;
+}
+.mk-word.is-lit {
+  opacity: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+  .mk-marquee-track { animation: none !important; transform: none !important; }
 }
+
