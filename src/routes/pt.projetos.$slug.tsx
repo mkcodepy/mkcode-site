@@ -59,7 +59,7 @@ function ProjectDetailPT() {
         <Container>
           <div className="mk-label mb-6">MODULES / ARCHITECTURE</div>
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {p.modules.map((m, i) => (
+            {p.modules.map((m: string, i: number) => (
               <div
                 key={m}
                 className="rounded-md border border-line bg-surface/40 p-5 font-mono text-[12px] tracking-[0.14em] text-ink-2"
