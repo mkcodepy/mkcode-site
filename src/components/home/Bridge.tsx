@@ -127,7 +127,7 @@ function BridgeNode({
         );
   return (
     <div className="flex flex-col items-center gap-3">
-      <div className="relative grid h-28 w-28 place-items-center rounded-full border border-line-2 bg-surface font-display text-3xl font-bold text-ink">
+      <div className="relative grid h-20 w-20 place-items-center rounded-full border border-line-2 bg-surface font-display text-2xl font-bold text-ink md:h-28 md:w-28 md:text-3xl">
         {code}
         <span
           className="absolute inset-[-3px] rounded-full opacity-40 blur-md"
@@ -140,7 +140,7 @@ function BridgeNode({
           }}
         />
       </div>
-      <div className="flex w-16 flex-col gap-1">{stripes}</div>
+      <div className="flex w-14 flex-col gap-1 md:w-16">{stripes}</div>
       <div className="font-mono text-[10.5px] tracking-[0.22em] text-ink-3">{label}</div>
     </div>
   );
