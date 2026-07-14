@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { Monogram } from "@/components/brand/Monogram";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/MkButton";
 import { useLocale, switchLocalePath, pathFor } from "@/lib/locale";
 import { getDict, type Locale } from "@/content/i18n";
 import { whatsappUrl } from "@/config/site";
