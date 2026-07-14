@@ -10,33 +10,193 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PtIndexRouteImport } from './routes/pt.index'
+import { Route as EsIndexRouteImport } from './routes/es.index'
+import { Route as PtMkCodeRouteImport } from './routes/pt.mk-code'
+import { Route as PtContatoRouteImport } from './routes/pt.contato'
+import { Route as PtCapacidadesRouteImport } from './routes/pt.capacidades'
+import { Route as EsMkCodeRouteImport } from './routes/es.mk-code'
+import { Route as EsContactoRouteImport } from './routes/es.contacto'
+import { Route as EsCapacidadesRouteImport } from './routes/es.capacidades'
+import { Route as PtProjetosIndexRouteImport } from './routes/pt.projetos.index'
+import { Route as EsProyectosIndexRouteImport } from './routes/es.proyectos.index'
+import { Route as PtProjetosSlugRouteImport } from './routes/pt.projetos.$slug'
+import { Route as EsProyectosSlugRouteImport } from './routes/es.proyectos.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PtIndexRoute = PtIndexRouteImport.update({
+  id: '/pt/',
+  path: '/pt/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsIndexRoute = EsIndexRouteImport.update({
+  id: '/es/',
+  path: '/es/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PtMkCodeRoute = PtMkCodeRouteImport.update({
+  id: '/pt/mk-code',
+  path: '/pt/mk-code',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PtContatoRoute = PtContatoRouteImport.update({
+  id: '/pt/contato',
+  path: '/pt/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PtCapacidadesRoute = PtCapacidadesRouteImport.update({
+  id: '/pt/capacidades',
+  path: '/pt/capacidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsMkCodeRoute = EsMkCodeRouteImport.update({
+  id: '/es/mk-code',
+  path: '/es/mk-code',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsContactoRoute = EsContactoRouteImport.update({
+  id: '/es/contacto',
+  path: '/es/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsCapacidadesRoute = EsCapacidadesRouteImport.update({
+  id: '/es/capacidades',
+  path: '/es/capacidades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PtProjetosIndexRoute = PtProjetosIndexRouteImport.update({
+  id: '/pt/projetos/',
+  path: '/pt/projetos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsProyectosIndexRoute = EsProyectosIndexRouteImport.update({
+  id: '/es/proyectos/',
+  path: '/es/proyectos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PtProjetosSlugRoute = PtProjetosSlugRouteImport.update({
+  id: '/pt/projetos/$slug',
+  path: '/pt/projetos/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsProyectosSlugRoute = EsProyectosSlugRouteImport.update({
+  id: '/es/proyectos/$slug',
+  path: '/es/proyectos/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/es/capacidades': typeof EsCapacidadesRoute
+  '/es/contacto': typeof EsContactoRoute
+  '/es/mk-code': typeof EsMkCodeRoute
+  '/pt/capacidades': typeof PtCapacidadesRoute
+  '/pt/contato': typeof PtContatoRoute
+  '/pt/mk-code': typeof PtMkCodeRoute
+  '/es/': typeof EsIndexRoute
+  '/pt/': typeof PtIndexRoute
+  '/es/proyectos/$slug': typeof EsProyectosSlugRoute
+  '/pt/projetos/$slug': typeof PtProjetosSlugRoute
+  '/es/proyectos/': typeof EsProyectosIndexRoute
+  '/pt/projetos/': typeof PtProjetosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/es/capacidades': typeof EsCapacidadesRoute
+  '/es/contacto': typeof EsContactoRoute
+  '/es/mk-code': typeof EsMkCodeRoute
+  '/pt/capacidades': typeof PtCapacidadesRoute
+  '/pt/contato': typeof PtContatoRoute
+  '/pt/mk-code': typeof PtMkCodeRoute
+  '/es': typeof EsIndexRoute
+  '/pt': typeof PtIndexRoute
+  '/es/proyectos/$slug': typeof EsProyectosSlugRoute
+  '/pt/projetos/$slug': typeof PtProjetosSlugRoute
+  '/es/proyectos': typeof EsProyectosIndexRoute
+  '/pt/projetos': typeof PtProjetosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/es/capacidades': typeof EsCapacidadesRoute
+  '/es/contacto': typeof EsContactoRoute
+  '/es/mk-code': typeof EsMkCodeRoute
+  '/pt/capacidades': typeof PtCapacidadesRoute
+  '/pt/contato': typeof PtContatoRoute
+  '/pt/mk-code': typeof PtMkCodeRoute
+  '/es/': typeof EsIndexRoute
+  '/pt/': typeof PtIndexRoute
+  '/es/proyectos/$slug': typeof EsProyectosSlugRoute
+  '/pt/projetos/$slug': typeof PtProjetosSlugRoute
+  '/es/proyectos/': typeof EsProyectosIndexRoute
+  '/pt/projetos/': typeof PtProjetosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/es/capacidades'
+    | '/es/contacto'
+    | '/es/mk-code'
+    | '/pt/capacidades'
+    | '/pt/contato'
+    | '/pt/mk-code'
+    | '/es/'
+    | '/pt/'
+    | '/es/proyectos/$slug'
+    | '/pt/projetos/$slug'
+    | '/es/proyectos/'
+    | '/pt/projetos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/es/capacidades'
+    | '/es/contacto'
+    | '/es/mk-code'
+    | '/pt/capacidades'
+    | '/pt/contato'
+    | '/pt/mk-code'
+    | '/es'
+    | '/pt'
+    | '/es/proyectos/$slug'
+    | '/pt/projetos/$slug'
+    | '/es/proyectos'
+    | '/pt/projetos'
+  id:
+    | '__root__'
+    | '/'
+    | '/es/capacidades'
+    | '/es/contacto'
+    | '/es/mk-code'
+    | '/pt/capacidades'
+    | '/pt/contato'
+    | '/pt/mk-code'
+    | '/es/'
+    | '/pt/'
+    | '/es/proyectos/$slug'
+    | '/pt/projetos/$slug'
+    | '/es/proyectos/'
+    | '/pt/projetos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EsCapacidadesRoute: typeof EsCapacidadesRoute
+  EsContactoRoute: typeof EsContactoRoute
+  EsMkCodeRoute: typeof EsMkCodeRoute
+  PtCapacidadesRoute: typeof PtCapacidadesRoute
+  PtContatoRoute: typeof PtContatoRoute
+  PtMkCodeRoute: typeof PtMkCodeRoute
+  EsIndexRoute: typeof EsIndexRoute
+  PtIndexRoute: typeof PtIndexRoute
+  EsProyectosSlugRoute: typeof EsProyectosSlugRoute
+  PtProjetosSlugRoute: typeof PtProjetosSlugRoute
+  EsProyectosIndexRoute: typeof EsProyectosIndexRoute
+  PtProjetosIndexRoute: typeof PtProjetosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +208,107 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pt/': {
+      id: '/pt/'
+      path: '/pt'
+      fullPath: '/pt/'
+      preLoaderRoute: typeof PtIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/': {
+      id: '/es/'
+      path: '/es'
+      fullPath: '/es/'
+      preLoaderRoute: typeof EsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pt/mk-code': {
+      id: '/pt/mk-code'
+      path: '/pt/mk-code'
+      fullPath: '/pt/mk-code'
+      preLoaderRoute: typeof PtMkCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pt/contato': {
+      id: '/pt/contato'
+      path: '/pt/contato'
+      fullPath: '/pt/contato'
+      preLoaderRoute: typeof PtContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pt/capacidades': {
+      id: '/pt/capacidades'
+      path: '/pt/capacidades'
+      fullPath: '/pt/capacidades'
+      preLoaderRoute: typeof PtCapacidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/mk-code': {
+      id: '/es/mk-code'
+      path: '/es/mk-code'
+      fullPath: '/es/mk-code'
+      preLoaderRoute: typeof EsMkCodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/contacto': {
+      id: '/es/contacto'
+      path: '/es/contacto'
+      fullPath: '/es/contacto'
+      preLoaderRoute: typeof EsContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/capacidades': {
+      id: '/es/capacidades'
+      path: '/es/capacidades'
+      fullPath: '/es/capacidades'
+      preLoaderRoute: typeof EsCapacidadesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pt/projetos/': {
+      id: '/pt/projetos/'
+      path: '/pt/projetos'
+      fullPath: '/pt/projetos/'
+      preLoaderRoute: typeof PtProjetosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/proyectos/': {
+      id: '/es/proyectos/'
+      path: '/es/proyectos'
+      fullPath: '/es/proyectos/'
+      preLoaderRoute: typeof EsProyectosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pt/projetos/$slug': {
+      id: '/pt/projetos/$slug'
+      path: '/pt/projetos/$slug'
+      fullPath: '/pt/projetos/$slug'
+      preLoaderRoute: typeof PtProjetosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/proyectos/$slug': {
+      id: '/es/proyectos/$slug'
+      path: '/es/proyectos/$slug'
+      fullPath: '/es/proyectos/$slug'
+      preLoaderRoute: typeof EsProyectosSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EsCapacidadesRoute: EsCapacidadesRoute,
+  EsContactoRoute: EsContactoRoute,
+  EsMkCodeRoute: EsMkCodeRoute,
+  PtCapacidadesRoute: PtCapacidadesRoute,
+  PtContatoRoute: PtContatoRoute,
+  PtMkCodeRoute: PtMkCodeRoute,
+  EsIndexRoute: EsIndexRoute,
+  PtIndexRoute: PtIndexRoute,
+  EsProyectosSlugRoute: EsProyectosSlugRoute,
+  PtProjetosSlugRoute: PtProjetosSlugRoute,
+  EsProyectosIndexRoute: EsProyectosIndexRoute,
+  PtProjetosIndexRoute: PtProjetosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
