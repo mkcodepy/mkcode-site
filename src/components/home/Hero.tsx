@@ -119,7 +119,7 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
     delay: 900,
   });
   return (
-    <div className="relative rounded-lg border border-line bg-surface/40 p-5 backdrop-blur-md">
+    <div className="relative rounded-lg border border-line bg-surface/40 p-4 backdrop-blur-md sm:p-5">
       {/* corner ticks */}
       <Corner className="left-0 top-0" />
       <Corner className="right-0 top-0 rotate-90" />
@@ -145,10 +145,86 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
         ) : null}
       </div>
 
-      {/* Node topology */}
-      <div className="relative mt-5 flex items-center justify-between px-2">
-        <SystemNode code="BR" label="ORIGIN" accent="br" size="sm" />
-        <div className="relative flex-1 mx-2">
+      {/* MOBILE: vertical BR → PY hero route */}
+      <div className="mt-6 sm:hidden">
+        <div className="flex flex-col items-center px-2">
+          <SystemNode
+            code="BR"
+            label="ORIGIN"
+            accent="br"
+            size="xl"
+            emphasis="hero"
+            sublabel="BRASIL — SÃO PAULO"
+            seal="MK.NODE / 01"
+          />
+
+          {/* Vertical route */}
+          <div className="relative my-4 h-[150px] w-full">
+            <svg viewBox="0 0 60 150" preserveAspectRatio="none" className="mx-auto h-full w-[60px]" aria-hidden>
+              <defs>
+                <linearGradient id="hero-line-v" x1="30" y1="0" x2="30" y2="150" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stopColor="#009C3B" />
+                  <stop offset="45%" stopColor="#69D5FF" />
+                  <stop offset="100%" stopColor="#D52B1E" />
+                </linearGradient>
+              </defs>
+              <path d="M30 0 L30 150" stroke="url(#hero-line-v)" strokeWidth="1.4" fill="none" />
+              <path
+                d="M30 0 L30 150"
+                stroke="#69D5FF"
+                strokeWidth="1"
+                strokeDasharray="3 8"
+                fill="none"
+                style={{ animation: "mk-dash 4s linear infinite" }}
+              />
+              <circle r="3.2" fill="#69D5FF">
+                <animateMotion dur="2.6s" repeatCount="indefinite" path="M30 0 L30 150" />
+              </circle>
+              <circle r="2.4" fill="#69D5FF" opacity="0.65">
+                <animateMotion dur="2.6s" begin="0.9s" repeatCount="indefinite" path="M30 0 L30 150" />
+              </circle>
+              <circle r="1.8" fill="#69D5FF" opacity="0.4">
+                <animateMotion dur="2.6s" begin="1.8s" repeatCount="indefinite" path="M30 0 L30 150" />
+              </circle>
+            </svg>
+
+            {/* side ticks */}
+            <div className="pointer-events-none absolute inset-0 flex flex-col justify-between py-1 font-mono text-[9px] tracking-[0.22em] text-ink-3">
+              <div className="flex items-center justify-between">
+                <span>HANDSHAKE</span>
+                <span className="h-px w-3 bg-line-2" />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="h-px w-3 bg-line-2" />
+                <span>TRANSIT</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span>LANDING</span>
+                <span className="h-px w-3 bg-line-2" />
+              </div>
+            </div>
+          </div>
+
+          <SystemNode
+            code="PY"
+            label="PROD"
+            accent="py"
+            size="xl"
+            emphasis="hero"
+            sublabel="PARAGUAY — ENCARNACIÓN"
+            seal="MK.NODE / 02"
+          />
+
+          <div className="mt-4 font-mono text-[9.5px] tracking-[0.28em] text-cyan/80">
+            DEPLOY ROUTE / ACTIVE
+          </div>
+        </div>
+      </div>
+
+      {/* DESKTOP: horizontal route */}
+      <div className="relative mt-5 hidden items-center justify-between px-2 sm:flex">
+        <SystemNode code="BR" label="ORIGIN" accent="br" size="md" />
+        <div className="relative mx-2 flex-1">
           <svg viewBox="0 0 240 60" className="w-full" aria-hidden>
             <defs>
               <linearGradient id="hero-line" x1="0" x2="240">
@@ -184,8 +260,9 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
             DEPLOY ROUTE
           </div>
         </div>
-        <SystemNode code="PY" label="PROD" accent="py" size="sm" />
+        <SystemNode code="PY" label="PROD" accent="py" size="md" />
       </div>
+
 
       {/* Module grid */}
       <div className="mt-10 grid grid-cols-3 gap-2">

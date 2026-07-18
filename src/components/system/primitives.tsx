@@ -29,30 +29,91 @@ export function SystemNode({
   label,
   accent = "brand",
   size = "md",
+  emphasis,
+  sublabel,
+  seal,
 }: {
   code: string;
   label: string;
   accent?: "brand" | "br" | "py";
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xl";
+  emphasis?: "hero";
+  sublabel?: string;
+  seal?: string;
 }) {
-  const dim = { sm: "h-16 w-16 text-lg", md: "h-24 w-24 text-2xl", lg: "h-32 w-32 text-3xl" }[size];
-  const ring =
+  const dim = {
+    sm: "h-16 w-16 text-lg",
+    md: "h-24 w-24 text-2xl",
+    lg: "h-32 w-32 text-3xl",
+    xl: "h-36 w-36 text-4xl",
+  }[size];
+  const ringGrad =
     accent === "br"
-      ? "before:bg-[conic-gradient(from_0deg,#009C3B,#FFDF00,#009C3B)]"
+      ? "conic-gradient(from 0deg,#009C3B,#FFDF00,#1677FF,#009C3B)"
       : accent === "py"
-        ? "before:bg-[conic-gradient(from_0deg,#D52B1E,#FFFFFF,#0038A8,#D52B1E)]"
-        : "before:bg-[conic-gradient(from_0deg,#1677FF,#69D5FF,#1677FF)]";
+        ? "conic-gradient(from 0deg,#D52B1E,#FFFFFF,#0038A8,#D52B1E)"
+        : "conic-gradient(from 0deg,#1677FF,#69D5FF,#1677FF)";
+  const haloColor =
+    accent === "br"
+      ? "rgba(0,156,59,0.55)"
+      : accent === "py"
+        ? "rgba(213,43,30,0.55)"
+        : "rgba(105,213,255,0.55)";
+  const isHero = emphasis === "hero";
   return (
     <div className="relative inline-flex flex-col items-center gap-2">
+      {isHero ? (
+        <span
+          aria-hidden
+          className="pointer-events-none absolute -inset-6 rounded-full"
+          style={{
+            background: `radial-gradient(circle, ${haloColor} 0%, transparent 65%)`,
+            animation: "mk-halo 3.2s ease-in-out infinite",
+            filter: "blur(4px)",
+          }}
+        />
+      ) : null}
       <div
-        className={`relative grid ${dim} place-items-center rounded-full bg-surface font-mono font-semibold text-ink before:absolute before:inset-[-2px] before:-z-10 before:rounded-full before:opacity-70 before:blur-[6px] ${ring} border border-line-2`}
+        className={`relative grid ${dim} place-items-center rounded-full bg-surface font-mono font-semibold text-ink border border-line-2 ${isHero ? "shadow-[0_0_40px_rgba(105,213,255,0.15)]" : ""}`}
       >
-        <span>{code}</span>
+        {isHero ? (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -inset-[3px] rounded-full opacity-90"
+            style={{
+              background: ringGrad,
+              WebkitMask:
+                "radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px))",
+              mask: "radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px))",
+              animation: "mk-spin-slow 12s linear infinite",
+            }}
+          />
+        ) : (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-[-2px] -z-10 rounded-full opacity-70 blur-[6px]"
+            style={{ background: ringGrad }}
+          />
+        )}
+        <span className="relative z-10">{code}</span>
       </div>
-      <span className="font-mono text-[10px] tracking-[0.22em] text-ink-3">{label}</span>
+      <span
+        className={`font-mono ${isHero ? "text-[11px] tracking-[0.28em] text-ink" : "text-[10px] tracking-[0.22em] text-ink-3"}`}
+      >
+        {label}
+      </span>
+      {sublabel ? (
+        <span className="font-display text-[11px] font-medium tracking-[-0.005em] text-ink-2">
+          {sublabel}
+        </span>
+      ) : null}
+      {seal ? (
+        <span className="font-mono text-[9px] tracking-[0.24em] text-ink-3">{seal}</span>
+      ) : null}
     </div>
   );
 }
+
 
 /**
  * Animated horizontal route between two points, with data packets travelling along.
