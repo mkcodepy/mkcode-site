@@ -18,7 +18,7 @@ export function Hero() {
   const headB = useScramble(h.headingB, { duration: 800, delay: 950 });
 
   return (
-    <section className="relative overflow-hidden pb-6 pt-28 sm:pt-32 md:pt-40 lg:pb-0 lg:pt-44">
+    <section className="relative overflow-hidden pb-8 pt-24 sm:pt-32 md:pt-40 lg:pb-0 lg:pt-44">
       {/* background grid */}
       <div className="pointer-events-none absolute inset-0 mk-grid-lines opacity-40" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[400px] bg-gradient-to-b from-brand/[0.08] via-transparent to-transparent" />
@@ -43,8 +43,9 @@ export function Hero() {
             </div>
 
             <h1
-              className="mt-5 font-display font-semibold leading-[1.02] tracking-[-0.03em] md:mt-6"
-              style={{ fontSize: "clamp(2.1rem, 5.4vw, 5rem)" }}
+              className="mt-4 font-display font-semibold leading-[1.02] tracking-[-0.03em] md:mt-6"
+              style={{ fontSize: "clamp(2rem, 8.4vw, 5rem)" }}
+
             >
               <span className="block">{headA}</span>
               <span className="relative inline-block text-ink">
@@ -62,7 +63,8 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.4 }}
-              className="mt-5 max-w-xl text-[16px] leading-relaxed text-ink-2 md:mt-6 md:text-lg"
+              className="mt-5 max-w-[54ch] text-[15.5px] leading-[1.65] text-ink-2 md:mt-6 md:text-lg"
+
             >
               {h.paragraph}
             </motion.p>
@@ -89,11 +91,12 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 1.8 }}
-              className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10.5px] tracking-[0.22em] text-ink-3"
+              className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-1.5 font-mono text-[10.5px] tracking-[0.22em] text-ink-3 md:mt-10"
             >
               <span>{h.techLabel}</span>
-              <span className="text-line-2">/</span>
+              <span className="hidden text-line-2 sm:inline">/</span>
               <span>{h.micro}</span>
+
             </motion.div>
           </div>
 
@@ -147,19 +150,20 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
 
       {/* MOBILE: vertical BR → PY hero route */}
       <div className="mt-6 sm:hidden">
-        <div className="flex flex-col items-center px-2">
+        <div className="flex flex-col items-center px-1">
           <SystemNode
             code="BR"
             label="ORIGIN"
             accent="br"
             size="xl"
             emphasis="hero"
-            sublabel="BRASIL — SÃO PAULO"
+            sublabel="BRASIL · SÃO PAULO"
             seal="MK.NODE / 01"
           />
 
           {/* Vertical route */}
-          <div className="relative my-4 h-[150px] w-full">
+          <div className="relative my-3 h-[130px] w-full">
+
             <svg viewBox="0 0 60 150" preserveAspectRatio="none" className="mx-auto h-full w-[60px]" aria-hidden>
               <defs>
                 <linearGradient id="hero-line-v" x1="30" y1="0" x2="30" y2="150" gradientUnits="userSpaceOnUse">
@@ -211,7 +215,7 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
             accent="py"
             size="xl"
             emphasis="hero"
-            sublabel="PARAGUAY — ENCARNACIÓN"
+            sublabel="PARAGUAY · ENCARNACIÓN"
             seal="MK.NODE / 02"
           />
 
@@ -265,10 +269,10 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
 
 
       {/* Module grid */}
-      <div className="mt-10 grid grid-cols-3 gap-2">
-        <TechCard label="ENV" value="PRODUCTION" />
-        <TechCard label="REGION" value="ENCARNACION-PY" />
-        <TechCard label="ARCH" value="CUSTOM" />
+      <div className="mt-8 grid grid-cols-3 gap-1.5 sm:mt-10 sm:gap-2">
+        <TechCard label="ENV" value="PROD" className="p-2.5 sm:p-3" />
+        <TechCard label="REGION" value="PY" className="p-2.5 sm:p-3" />
+        <TechCard label="ARCH" value="CUSTOM" className="p-2.5 sm:p-3" />
       </div>
 
       {/* Console */}
@@ -278,9 +282,9 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
         steps={h.consoleSteps as unknown as string[]}
       />
 
-      <div className="mt-4 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] text-ink-3">
-        <span>INFRASTRUCTURE / STABLE</span>
-        <span className="flex items-center gap-1.5">
+      <div className="mt-4 flex items-center justify-between gap-3 font-mono text-[9.5px] tracking-[0.2em] text-ink-3 sm:text-[10px] sm:tracking-[0.22em]">
+        <span className="truncate">INFRA / STABLE</span>
+        <span className="flex shrink-0 items-center gap-1.5">
           <StatusDot color="green" />
           READY
         </span>

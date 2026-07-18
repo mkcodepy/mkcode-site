@@ -45,7 +45,7 @@ export function SystemNode({
     sm: "h-16 w-16 text-lg",
     md: "h-24 w-24 text-2xl",
     lg: "h-32 w-32 text-3xl",
-    xl: "h-36 w-36 text-4xl",
+    xl: "h-28 w-28 text-3xl sm:h-36 sm:w-36 sm:text-4xl",
   }[size];
   const ringGrad =
     accent === "br"

@@ -12,20 +12,20 @@ export function SelectedSystems() {
   const dict = getDict(locale);
   const p = dict.projects;
   return (
-    <section className="relative py-16 sm:py-20 md:py-28 lg:py-36" id="projects">
+    <section className="relative py-14 sm:py-20 md:py-28 lg:py-36" id="projects">
       <Container>
         <div className="max-w-3xl">
           <Eyebrow>{p.eyebrow}</Eyebrow>
           <h2
-            className="mt-4 font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.75rem, 3.4vw, 3rem)" }}
+            className="mt-3 font-display font-semibold leading-[1.05] tracking-[-0.02em] md:mt-4"
+            style={{ fontSize: "clamp(1.75rem, 6.4vw, 3rem)" }}
           >
             {p.heading}
           </h2>
-          <p className="mt-6 text-[15px] leading-relaxed text-ink-2 md:text-base">{p.supporting}</p>
+          <p className="mt-5 max-w-[58ch] text-[15px] leading-[1.65] text-ink-2 md:mt-6 md:text-base">{p.supporting}</p>
         </div>
 
-        <div className="mt-10 space-y-4 md:mt-14">
+        <div className="mt-8 space-y-3 sm:space-y-4 md:mt-14">
           {projects.map((proj, i) => (
             <motion.div
               key={proj.slug}
@@ -33,20 +33,20 @@ export function SelectedSystems() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: i * 0.06 }}
-              className="group grid gap-6 rounded-lg border border-line bg-surface/40 p-6 transition-colors hover:border-line-2 md:p-8 lg:grid-cols-[1fr_1.2fr] lg:items-center"
+              className="group grid gap-5 rounded-lg border border-line bg-surface/40 p-5 transition-colors hover:border-line-2 sm:p-6 md:p-8 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-6"
             >
               <div>
-                <div className="font-mono text-[10.5px] tracking-[0.22em] text-cyan">
+                <div className="font-mono text-[10px] tracking-[0.22em] text-cyan sm:text-[10.5px]">
                   {proj.category}
                 </div>
-                <h3 className="mt-4 font-display text-xl font-semibold tracking-[-0.01em] text-ink md:text-2xl lg:text-3xl">
+                <h3 className="mt-3 font-display text-[1.25rem] font-semibold leading-[1.2] tracking-[-0.01em] text-ink sm:text-2xl md:mt-4 lg:text-3xl">
                   {proj.title[locale]}
                 </h3>
-                <p className="mt-4 max-w-lg text-[14.5px] leading-relaxed text-ink-2 md:text-base">{proj.description[locale]}</p>
+                <p className="mt-3 max-w-lg text-[14.5px] leading-[1.65] text-ink-2 md:mt-4 md:text-base">{proj.description[locale]}</p>
                 <Link
                   to="/$lang/proyectos/$slug"
                   params={{ lang: locale, slug: proj.slug }}
-                  className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.22em] text-ink transition-colors hover:text-cyan"
+                  className="mt-5 inline-flex min-h-11 items-center gap-2 font-mono text-[11px] tracking-[0.22em] text-ink transition-colors hover:text-cyan md:mt-6"
                 >
                   {p.viewCase.toUpperCase()}
                   <ArrowUpRight size={14} />
@@ -58,12 +58,12 @@ export function SelectedSystems() {
           ))}
         </div>
 
-        <div className="mt-10 rounded-lg border border-line bg-bg-2 p-6 md:mt-12 md:flex md:items-center md:justify-between md:gap-8 md:p-8">
-          <p className="max-w-xl font-display text-base leading-snug tracking-[-0.01em] text-ink md:text-lg lg:text-xl">
+        <div className="mt-8 rounded-lg border border-line bg-bg-2 p-5 sm:p-6 md:mt-12 md:flex md:items-center md:justify-between md:gap-8 md:p-8">
+          <p className="max-w-xl font-display text-[1.05rem] leading-[1.3] tracking-[-0.01em] text-ink sm:text-base md:text-lg lg:text-xl">
             {p.confidentiality}
           </p>
-          <Link to={pathFor(locale, "contact")} className="mt-5 inline-block md:mt-0">
-            <Button variant="secondary">{p.confidentialityCta}</Button>
+          <Link to={pathFor(locale, "contact")} className="mt-4 block md:mt-0 md:inline-block">
+            <Button variant="secondary" className="w-full md:w-auto">{p.confidentialityCta}</Button>
           </Link>
         </div>
       </Container>
@@ -77,7 +77,7 @@ function ModuleGrid({ modules }: { modules: string[] }) {
       {modules.map((m, i) => (
         <div
           key={m}
-          className="relative rounded-md border border-line bg-bg-2/60 p-3 font-mono text-[10.5px] tracking-[0.14em] text-ink-2"
+          className="relative rounded-md border border-line bg-bg-2/60 p-2.5 font-mono text-[10px] tracking-[0.14em] text-ink-2 sm:p-3 sm:text-[10.5px]"
         >
           <span className="mr-1.5 text-ink-3">{String(i + 1).padStart(2, "0")}</span>
           {m}
