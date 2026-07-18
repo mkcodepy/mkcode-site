@@ -10,12 +10,12 @@ export function FinalCta() {
   const dict = getDict(locale);
   const c = dict.finalCta;
   return (
-    <section className="relative overflow-hidden py-16 sm:py-20 md:py-28 lg:py-36">
+    <section className="relative overflow-hidden py-14 sm:py-20 md:py-28 lg:py-36">
       <div className="pointer-events-none absolute inset-0 mk-grid-lines opacity-30" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[400px] bg-gradient-to-t from-brand/[0.1] via-transparent to-transparent" />
 
       <Container>
-        <div className="relative rounded-lg border border-line-2 bg-surface/40 p-6 backdrop-blur-md sm:p-8 md:p-14">
+        <div className="relative rounded-lg border border-line-2 bg-surface/40 p-5 backdrop-blur-md sm:p-8 md:p-14">
           {/* incoming route */}
           <svg viewBox="0 0 800 40" className="absolute -top-6 left-0 h-6 w-full" aria-hidden>
             <path
@@ -28,21 +28,21 @@ export function FinalCta() {
             />
           </svg>
 
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-center">
+          <div className="grid gap-8 md:gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-center">
             <div>
-              <div className="flex items-center gap-2 font-mono text-[10.5px] tracking-[0.22em] text-cyan">
+              <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] text-cyan sm:text-[10.5px]">
                 <StatusDot color="cyan" />
                 FINAL / PRODUCTION NODE
               </div>
               <h2
-                className="mt-5 font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-                style={{ fontSize: "clamp(1.75rem, 3.6vw, 3.2rem)" }}
+                className="mt-4 font-display font-semibold leading-[1.05] tracking-[-0.02em] md:mt-5"
+                style={{ fontSize: "clamp(1.85rem, 7vw, 3.4rem)" }}
               >
                 {c.heading}
               </h2>
-              <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-2 md:mt-6 md:text-base">{c.supporting}</p>
+              <p className="mt-4 max-w-xl text-[15px] leading-[1.65] text-ink-2 md:mt-6 md:text-base">{c.supporting}</p>
 
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mt-8">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mt-8">
                 <Link to={pathFor(locale, "contact")} className="block sm:inline-block">
                   <Button variant="primary" size="lg" className="w-full sm:w-auto">
                     {c.primary}
@@ -55,7 +55,7 @@ export function FinalCta() {
                 </Link>
               </div>
 
-              <div className="mt-8 flex flex-col gap-1 font-mono text-[10.5px] tracking-[0.22em] text-ink-3">
+              <div className="mt-7 flex flex-col gap-1 font-mono text-[10px] tracking-[0.22em] text-ink-3 sm:text-[10.5px] md:mt-8">
                 <span>{c.location.toUpperCase()}</span>
                 <span>{c.coverage.toUpperCase()}</span>
               </div>

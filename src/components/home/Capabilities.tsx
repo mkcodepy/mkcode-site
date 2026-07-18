@@ -7,22 +7,22 @@ export function Capabilities() {
   const dict = getDict(useLocale());
   const c = dict.capabilities;
   return (
-    <section className="relative py-16 sm:py-20 md:py-28 lg:py-36" id="capabilities">
+    <section className="relative py-14 sm:py-20 md:py-28 lg:py-36" id="capabilities">
       <Container>
-        <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:gap-10">
+        <div className="grid gap-6 md:grid-cols-[1.2fr_1fr] md:gap-10">
           <div>
             <Eyebrow>CAPABILITIES</Eyebrow>
             <h2
-              className="mt-4 max-w-3xl font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(1.75rem, 3.4vw, 3rem)" }}
+              className="mt-3 max-w-3xl font-display font-semibold leading-[1.05] tracking-[-0.02em] md:mt-4"
+              style={{ fontSize: "clamp(1.75rem, 6.4vw, 3rem)" }}
             >
               {c.heading}
             </h2>
           </div>
-          <p className="max-w-md self-end text-[15px] leading-relaxed text-ink-2 md:text-base">{c.supporting}</p>
+          <p className="max-w-[54ch] text-[15px] leading-[1.65] text-ink-2 md:self-end md:text-base">{c.supporting}</p>
         </div>
 
-        <div className="mt-10 grid gap-4 md:mt-16 md:grid-cols-2 lg:grid-cols-2">
+        <div className="mt-8 grid gap-3 sm:gap-4 md:mt-16 md:grid-cols-2 lg:grid-cols-2">
           {c.items.map((item, i) => (
             <motion.article
               key={item.n}
@@ -30,26 +30,26 @@ export function Capabilities() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: (i % 2) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative overflow-hidden rounded-lg border border-line bg-surface/40 p-6 transition-colors hover:border-line-2 md:p-8"
+              className="group relative overflow-hidden rounded-lg border border-line bg-surface/40 p-5 transition-colors hover:border-line-2 sm:p-6 md:p-8"
             >
               {/* accent line */}
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 
-              <div className="flex items-start justify-between">
-                <span className="font-mono text-[11px] tracking-[0.24em] text-ink-3">
+              <div className="flex items-start justify-between gap-3">
+                <span className="font-mono text-[10.5px] tracking-[0.24em] text-ink-3">
                   / {item.n}
                 </span>
                 <VisualBadge index={i} />
               </div>
 
-              <h3 className="mt-6 font-display text-xl font-semibold tracking-[-0.01em] text-ink md:mt-8 md:text-2xl">
+              <h3 className="mt-5 font-display text-[1.15rem] font-semibold leading-[1.2] tracking-[-0.01em] text-ink sm:text-xl md:mt-8 md:text-2xl">
                 {item.title}
               </h3>
-              <p className="mt-3 max-w-md text-[14.5px] leading-relaxed text-ink-2 md:text-[15px]">
+              <p className="mt-3 max-w-md text-[14.5px] leading-[1.6] text-ink-2 md:mt-4 md:text-[15px]">
                 {item.description}
               </p>
 
-              <ul className="mt-6 flex flex-wrap gap-1.5 md:mt-8">
+              <ul className="mt-5 flex flex-wrap gap-1.5 md:mt-8">
                 {item.tags.map((tag) => (
                   <li
                     key={tag}

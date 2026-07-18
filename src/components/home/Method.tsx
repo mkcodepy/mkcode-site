@@ -19,20 +19,21 @@ export function Method() {
   const activeIndex = useTransform(scrollYProgress, [0.15, 0.85], [0, m.stages.length]);
 
   return (
-    <section className="relative py-16 sm:py-20 md:py-28 lg:py-36" ref={ref} id="method">
+    <section className="relative py-14 sm:py-20 md:py-28 lg:py-36" ref={ref} id="method">
       <SectionBoot name="method">
         <Container>
           <div className="max-w-3xl">
             <Eyebrow>{m.eyebrow}</Eyebrow>
             <h2
-              className="mt-4 font-display font-semibold leading-[1.05] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(1.75rem, 3.4vw, 3rem)" }}
+              className="mt-3 font-display font-semibold leading-[1.05] tracking-[-0.02em] md:mt-4"
+              style={{ fontSize: "clamp(1.75rem, 6.4vw, 3rem)" }}
             >
               <ScrambleText onView duration={550}>
                 {m.heading}
               </ScrambleText>
             </h2>
           </div>
+
 
           {/* Terminal panel */}
           <div className="mt-10 rounded-lg border border-line bg-bg-2/70 p-4 backdrop-blur-md sm:p-5 md:mt-12 md:p-7 mk-scanlines">
