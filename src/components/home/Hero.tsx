@@ -215,7 +215,7 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
             accent="py"
             size="xl"
             emphasis="hero"
-            sublabel="PARAGUAY — ENCARNACIÓN"
+            sublabel="PARAGUAY · ENCARNACIÓN"
             seal="MK.NODE / 02"
           />
 
