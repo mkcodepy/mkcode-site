@@ -150,19 +150,20 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
 
       {/* MOBILE: vertical BR → PY hero route */}
       <div className="mt-6 sm:hidden">
-        <div className="flex flex-col items-center px-2">
+        <div className="flex flex-col items-center px-1">
           <SystemNode
             code="BR"
             label="ORIGIN"
             accent="br"
             size="xl"
             emphasis="hero"
-            sublabel="BRASIL — SÃO PAULO"
+            sublabel="BRASIL · SÃO PAULO"
             seal="MK.NODE / 01"
           />
 
           {/* Vertical route */}
-          <div className="relative my-4 h-[150px] w-full">
+          <div className="relative my-3 h-[130px] w-full">
+
             <svg viewBox="0 0 60 150" preserveAspectRatio="none" className="mx-auto h-full w-[60px]" aria-hidden>
               <defs>
                 <linearGradient id="hero-line-v" x1="30" y1="0" x2="30" y2="150" gradientUnits="userSpaceOnUse">
