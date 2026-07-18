@@ -268,10 +268,10 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
 
 
       {/* Module grid */}
-      <div className="mt-10 grid grid-cols-3 gap-2">
-        <TechCard label="ENV" value="PRODUCTION" />
-        <TechCard label="REGION" value="ENCARNACION-PY" />
-        <TechCard label="ARCH" value="CUSTOM" />
+      <div className="mt-8 grid grid-cols-3 gap-1.5 sm:mt-10 sm:gap-2">
+        <TechCard label="ENV" value="PROD" className="p-2.5 sm:p-3" />
+        <TechCard label="REGION" value="PY" className="p-2.5 sm:p-3" />
+        <TechCard label="ARCH" value="CUSTOM" className="p-2.5 sm:p-3" />
       </div>
 
       {/* Console */}
@@ -281,9 +281,9 @@ function SystemVisualization({ dict }: { dict: ReturnType<typeof getDict> }) {
         steps={h.consoleSteps as unknown as string[]}
       />
 
-      <div className="mt-4 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] text-ink-3">
-        <span>INFRASTRUCTURE / STABLE</span>
-        <span className="flex items-center gap-1.5">
+      <div className="mt-4 flex items-center justify-between gap-3 font-mono text-[9.5px] tracking-[0.2em] text-ink-3 sm:text-[10px] sm:tracking-[0.22em]">
+        <span className="truncate">INFRA / STABLE</span>
+        <span className="flex shrink-0 items-center gap-1.5">
           <StatusDot color="green" />
           READY
         </span>
