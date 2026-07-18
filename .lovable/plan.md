@@ -1,73 +1,95 @@
 
-# Hero — Bloco BR → PY: hierarquia e animação mobile
+# Auditoria mobile completa — MK CODE
 
-Alvo: o painel `SystemVisualization` do `Hero.tsx` (linhas 122–216) — hoje os nós ORIGIN/PROD ficam pequenos, apertados nas laterais e com a curva de deploy espremida no mobile.
+Objetivo: revisar cada bloco do site em mobile (320–640px) garantindo hierarquia visual forte, harmonia tipográfica, respiração adequada, alvos de toque acessíveis e zero desproporção. Sem alterar desktop.
 
-## Diagnóstico
+## Método
 
-- `SystemNode size="sm"` = 64×64 px — pequeno demais como elemento-herói do painel no mobile.
-- Layout horizontal `BR ── curva ── PY` só funciona bem em ≥ 480 px; abaixo disso a curva encolhe e some a hierarquia.
-- Sem "peso" visual: falta halo, pulso e anel giratório mais expressivo.
-- Labels ORIGIN/PROD com `text-[10px]` desaparecem no meio do ruído.
+1. Capturar screenshots via Playwright em 320px, 375px, 414px e 640px de cada seção.
+2. Comparar contra checklist de padrões abaixo.
+3. Aplicar ajustes por componente em uma única passagem coordenada.
+4. Reverificar com screenshots antes/depois.
 
-## Mudanças (só no bloco selecionado)
+## Padrões mobile a aplicar (checklist global)
 
-### 1. Layout responsivo em duas variantes
+- **Ritmo vertical**: seções `py-14` no mobile → `sm:py-20` → `md:py-28` → `lg:py-36`. Consistente entre todas as seções home.
+- **Tipografia display (h2)**: `clamp(1.75rem, 6.4vw, 3rem)` com `leading-[1.05]` e `tracking-[-0.02em]`. Eyebrow com `mt-3` no mobile.
+- **Parágrafos**: `text-[15px] leading-[1.65]` mobile, `md:text-base`. Largura máx `max-w-[52ch]`.
+- **Cards**: `p-5` mobile, `md:p-8`. Border-radius consistente `rounded-lg`. Gap entre cards `gap-3` mobile, `md:gap-4`.
+- **Eyebrows / mono labels**: `text-[10.5px] tracking-[0.22em]`. Nunca menor que 10px.
+- **Alvos de toque**: mínimo 44px (`min-h-11`). Links inline mono com `py-1` para área tocável.
+- **Grid → stack**: todos os grids 2/3 col colapsam para 1 col abaixo de 640px, exceto módulos de terminal (2 col).
+- **Espaço horizontal**: Container `px-5` mobile, `sm:px-6`, `md:px-8`. Safe-area já aplicado.
+- **Hierarquia dentro de cards**: número/tag → título → descrição → tags. Espaçamento `mt-5, mt-3, mt-5`.
 
-- **< 640 px (mobile):** rota vertical BR → ↓ → PY, ocupando toda a largura do painel.
-  - Nós grandes `size="lg"` (128 px) centralizados.
-  - Linha animada vertical (SVG) entre eles, com "packet" descendo em loop.
-  - Labels ORIGIN / PROD promovidos: `text-[11px] tracking-[0.28em]` + subrótulo em display font ("BRASIL — SÃO PAULO" / "PARAGUAY — ENCARNACIÓN").
-  - Distância mínima entre nós = 96 px para dar respiro.
-- **≥ 640 px (sm+):** mantém a rota horizontal atual, mas com nós `size="md"` (era `sm`) e curva mais alta.
+## Ajustes por componente
 
-### 2. Novo `SystemNode` — variante "hero"
+### `Hero.tsx`
+- Reduzir `pt-28` para `pt-24` no mobile (header não é tão alto).
+- Heading: garantir `clamp(2rem, 8.5vw, 5rem)` para escalar melhor em 320px.
+- Parágrafo: `text-[15.5px]` mobile, `max-w-[54ch]`.
+- Techlabel row: quebrar melhor com `gap-y-1.5`, remover barra `/` quando empilhado.
+- SystemVisualization: reduzir `p-4` → `p-4` mantém, mas ajustar internal spacing (mt-6 → mt-5); reduzir altura da rota vertical `h-[150px]` → `h-[130px]` em 320px.
+- TechCards em grid-cols-3: forçar `grid-cols-3` com `text-[9.5px]` para caber sem quebra em 320px, ou empilhar em 2+1.
+- Console terminal: fonte `text-[10.5px]` para legibilidade.
 
-Prop opcional `emphasis?: "hero"` no `primitives.tsx` que adiciona:
-- Anel cônico girando lentamente (12 s) com máscara para virar traço fino.
-- Halo pulsante externo (box-shadow em `mk-pulse-dot` mais forte).
-- Núcleo com gradiente radial sutil (bandeira BR ou PY em `mix-blend-overlay` a 15% opacidade — referência sem cafonice).
-- Micro-selo abaixo do código: `MK.NODE / 01` estilo terminal.
-- `will-change: transform` só quando visível.
+### `SignalStrip.tsx`
+- Marquee: pausa se prefers-reduced-motion. Padding vertical `py-3` mobile.
+- Fonte `text-[10.5px] tracking-[0.24em]`.
 
-Fallback quando `prefers-reduced-motion`: sem giro, mantém halo estático.
+### `Manifesto.tsx`
+- Padding seção padronizado.
+- Steps: mobile `text-[1.35rem]` com `leading-[1.15]`; opacidade steps inativos `0.55`.
+- Espaçamento vertical entre steps `space-y-6` mobile.
 
-### 3. Rota animada mais rica (mobile)
+### `Capabilities.tsx`
+- Header grid quebrar melhor: título full-width, supporting em bloco abaixo com `mt-4`.
+- Cards: `p-5 md:p-8`. Título `text-[1.15rem] md:text-2xl`. VisualBadge menor no mobile (48x30) para não competir com número.
+- Tags: `text-[10px]` com `px-2 py-1`, gap `gap-1.5`.
 
-SVG vertical 2×140 (px) entre os nós:
-- Linha base tracejada com gradiente BR-green → cyan → PY-red.
-- 3 packets (`animateMotion`) descendo em cascata (offset 0 s / 1.2 s / 2.4 s).
-- Ticks laterais a cada 20 % com labels curtinhos: `HANDSHAKE`, `TRANSIT`, `LANDING`.
-- Texto "DEPLOY ROUTE" com `ScrambleText` on-view.
+### `SelectedSystems.tsx`
+- Header ok, mas parágrafo `mt-5` mobile.
+- Cards projeto: mobile stack — texto primeiro, ModuleGrid depois com `mt-6`.
+- ModuleGrid: `grid-cols-2` mobile com `text-[10px]`, `p-2.5`. Título projeto `text-[1.25rem]` em 320px.
+- Confidentiality banner: stack vertical clean, CTA full width mobile.
 
-### 4. Hierarquia tipográfica
+### `Method.tsx`
+- Já compactado; validar que terminal lines quebram sem overflow horizontal em 320px. Truncar filenames se necessário.
 
-Ordem clara no mobile de cima para baixo:
-1. `BR` (128 px node) + `ORIGIN` + `BRASIL — SP`
-2. rota vertical animada + label da rota
-3. `PY` (128 px node) + `PROD` + `PARAGUAY — ENCARNACIÓN`
-4. divisor
-5. blocos existentes (boot line, TechCard grid, TerminalBox, footer)
+### `Bridge.tsx`
+- Nodes já responsivos; garantir label sublabels não estouram — `text-[9.5px]` mobile.
+- Rota SVG central: espessura consistente.
 
-### 5. Padding e safe-area
+### `Founder.tsx`
+- Portrait: full-width mobile com `aspect-[4/5]`. Monogram overlay proporcional (`h-14 w-14` mobile).
+- Quote: `text-[1.15rem] leading-[1.35]` mobile.
+- Bio meta list: `text-[11px]` mono, `space-y-2`.
 
-- Painel externo: `p-4` no mobile (era `p-5`), com `px-6` interno na área dos nós para não colar nas bordas.
-- Gap vertical entre seções internas ajustado com `space-y-6` mobile / `space-y-5` desktop.
+### `Selectivity.tsx`
+- Lista de critérios: cards empilhados com `p-5`. Número grande à esquerda `text-3xl` mobile.
+- Espaço entre cards `space-y-3`.
 
-## Performance
+### `FinalCta.tsx`
+- Já com CTAs empilhados. Aumentar título mobile: `clamp(1.75rem, 7vw, 3.5rem)`.
+- Adicionar `min-h-[60vh]` mobile para presença; reduzir `py-`.
+- Botões `w-full` já ok, garantir gap `gap-3`.
 
-- Um único SVG por variante (mobile/desktop), condicional via `useIsMobile()`.
-- `animateMotion` é GPU-friendly; sem canvas novo.
-- Reutiliza tokens/keyframes existentes (`mk-dash`, `mk-blink`, `mk-pulse-dot`); nenhum keyframe global novo.
-- Sem impacto no bundle — apenas markup.
+### `Header.tsx` / `Footer.tsx`
+- Header mobile: garantir nav drawer com padding e safe-area top.
+- Footer: colunas empilham; separadores mais suaves; monogram + wordmark alinhados; language switch acessível (min 44px).
 
-## Arquivos a editar
+### Detalhes globais
+- `src/styles.css`: adicionar `.mk-touch { min-height: 2.75rem; }` utility se necessário.
+- Verificar `Container` para `px-5` mobile.
+- Garantir que nenhuma seção causa overflow-x (adicionar `overflow-x-hidden` no `<body>` já em __root).
 
-- `src/components/home/Hero.tsx` — `SystemVisualization` (novo layout + branch mobile/desktop).
-- `src/components/system/primitives.tsx` — `SystemNode` ganha prop `emphasis` e ajustes de anel/halo.
+## Verificação
 
-Nenhuma mudança de conteúdo/i18n, nenhum efeito fora do painel.
+Após aplicar mudanças:
+- Screenshots Playwright em 320, 375, 414, 640, 768px.
+- Rolar página completa e comparar antes/depois de cada seção.
+- Confirmar: zero overflow horizontal, títulos legíveis, cards com ar, botões ≥44px, hierarquia clara em cada bloco.
 
-## Entregável
+## Escopo
 
-Screenshots Playwright em 320 / 375 / 414 / 640 / 1024 px comparando antes/depois, confirmando que a hierarquia BR → PY vira o herói visual do painel no mobile.
+Somente CSS/JSX de apresentação nos componentes listados + `src/styles.css` e `Container.tsx` se necessário. Sem mudanças em conteúdo, i18n, rotas, ou lógica.
