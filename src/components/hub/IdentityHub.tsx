@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, type MouseEvent, type ReactNode } from "react";
-import characterAsset from "@/assets/mk-code-character.png.asset.json";
+import characterAsset from "@/assets/mk-code-character.webp.asset.json";
 import { Monogram } from "@/components/brand/Monogram";
 import { GlitchWord } from "@/components/fx/GlitchWord";
 import { StatusDot } from "@/components/system/primitives";
@@ -78,7 +78,7 @@ export function IdentityHub() {
       <HubTopbar locale={locale} />
 
       <main className="relative z-10">
-        <section className="relative min-h-[610px] overflow-hidden px-[max(1.15rem,env(safe-area-inset-left))] pb-8 pt-[calc(5rem+env(safe-area-inset-top))] sm:min-h-[690px] sm:px-8 sm:pt-28 lg:min-h-[720px] lg:px-10 lg:pt-32">
+        <section className="relative min-h-[560px] overflow-hidden px-[max(1.15rem,env(safe-area-inset-left))] pb-8 pt-[calc(5rem+env(safe-area-inset-top))] sm:min-h-[690px] sm:px-8 sm:pt-28 lg:min-h-[720px] lg:px-10 lg:pt-32">
           <div className="mx-auto grid h-full max-w-[1280px] lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1.1fr)] lg:items-center">
             <div className="relative z-20 max-w-[660px] pt-3 sm:pt-8 lg:pt-0">
               <motion.div
@@ -126,7 +126,7 @@ export function IdentityHub() {
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
                 style={{ x: characterX, y: characterY }}
-                className="absolute bottom-[-56px] right-[-95px] h-[500px] w-[390px] sm:bottom-[-72px] sm:right-[-20px] sm:h-[650px] sm:w-[500px] lg:bottom-[-88px] lg:right-[1vw] lg:h-[780px] lg:w-[600px] xl:h-[850px] xl:w-[655px]"
+                className="absolute bottom-[-62px] right-[-105px] h-[470px] w-[366px] min-[370px]:right-[-86px] min-[370px]:h-[500px] min-[370px]:w-[390px] sm:bottom-[-72px] sm:right-[-20px] sm:h-[650px] sm:w-[500px] lg:bottom-[-60px] lg:right-[1vw] lg:h-[780px] lg:w-[600px]"
               >
                 <img
                   src={characterAsset.url}
@@ -146,7 +146,7 @@ export function IdentityHub() {
           </div>
         </section>
 
-        <section className="relative z-20 border-y border-line bg-bg/80 px-[max(1.15rem,env(safe-area-inset-left))] py-12 backdrop-blur-md sm:px-8 sm:py-16 lg:px-10" aria-labelledby="hub-links-title">
+        <section className="relative z-20 border-y border-line bg-bg/80 px-[max(1.15rem,env(safe-area-inset-left))] py-10 backdrop-blur-md sm:px-8 sm:py-16 lg:px-10" aria-labelledby="hub-links-title">
           <div className="mx-auto max-w-[1280px]">
             <SectionLabel id="hub-links-title" index="01">{copy.links}</SectionLabel>
             <div className="mt-5 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
@@ -200,7 +200,13 @@ export function IdentityHub() {
                       {social.name === "Instagram" ? <Instagram size={14} /> : <Mail size={14} />}
                       {social.name}
                     </a>
-                  ) : null)}
+                  ) : (
+                    <span key={social.name} aria-disabled="true" className="inline-flex min-h-11 items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-ink-3 opacity-55">
+                      {social.name === "GitHub" ? <Github size={14} /> : <Radio size={14} />}
+                      {social.name}
+                      <span className="sr-only">— {copy.unavailable}</span>
+                    </span>
+                  ))}
                 </div>
               </div>
               <div className="font-mono text-[9px] leading-6 tracking-[0.16em] text-ink-3 sm:text-right">
@@ -219,7 +225,7 @@ function HubTopbar({ locale }: { locale: "es" | "pt" }) {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-line bg-bg/70 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
       <div className="mx-auto grid h-16 max-w-[1360px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-[max(1.15rem,env(safe-area-inset-left))] sm:px-8 lg:px-10">
-        <Link to={locale === "es" ? "/es" : "/pt"} aria-label="MK CODE" className="flex min-w-0 items-center gap-2.5">
+        <Link to={locale === "es" ? "/es" : "/pt"} aria-label="MK CODE" className="flex w-fit min-w-0 items-center gap-2.5">
           <Monogram size={27} className="shrink-0" />
           <span className="truncate font-display text-[13px] font-semibold tracking-[0.16em] text-ink">MK CODE</span>
         </Link>
