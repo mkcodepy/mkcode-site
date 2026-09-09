@@ -225,15 +225,15 @@ function HubTopbar({ locale }: { locale: "es" | "pt" }) {
   return (
     <header className="fixed inset-x-0 top-0 z-40 border-b border-line bg-bg/70 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
       <div className="mx-auto grid h-16 max-w-[1360px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-[max(1.15rem,env(safe-area-inset-left))] sm:px-8 lg:px-10">
-        <Link to={locale === "es" ? "/es" : "/pt"} aria-label="MK CODE" className="flex w-fit min-w-0 items-center gap-2.5">
+        <Link to={locale === "es" ? "/es" : "/pt"} aria-label="MK CODE" className="flex min-h-11 w-fit min-w-0 items-center gap-2.5">
           <Monogram size={27} className="shrink-0" />
           <span className="truncate font-display text-[13px] font-semibold tracking-[0.16em] text-ink">MK CODE</span>
         </Link>
         <div className="flex shrink-0 items-center gap-2">
           <div className="hidden items-center gap-2 font-mono text-[9px] tracking-[0.18em] text-ink-3 min-[410px]:flex"><Radio size={12} className="text-cyan" />ID NODE</div>
           <div className="flex rounded-md border border-line bg-surface/70 p-0.5 font-mono text-[10px] tracking-[0.14em]">
-            <a href="/es" className={`grid h-9 min-w-9 place-items-center rounded ${locale === "es" ? "bg-brand/20 text-ink" : "text-ink-3"}`}>ES</a>
-            <a href="/pt" className={`grid h-9 min-w-9 place-items-center rounded ${locale === "pt" ? "bg-brand/20 text-ink" : "text-ink-3"}`}>PT</a>
+            <a href="/es" className={`grid h-11 min-w-11 place-items-center rounded ${locale === "es" ? "bg-brand/20 text-ink" : "text-ink-3"}`}>ES</a>
+            <a href="/pt" className={`grid h-11 min-w-11 place-items-center rounded ${locale === "pt" ? "bg-brand/20 text-ink" : "text-ink-3"}`}>PT</a>
           </div>
         </div>
       </div>
