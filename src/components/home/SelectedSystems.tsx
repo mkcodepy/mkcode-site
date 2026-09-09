@@ -44,8 +44,8 @@ export function SelectedSystems() {
                 </h3>
                 <p className="mt-3 max-w-lg text-[14.5px] leading-[1.65] text-ink-2 md:mt-4 md:text-base">{proj.description[locale]}</p>
                 <Link
-                  to="/$lang/proyectos/$slug"
-                  params={{ lang: locale, slug: proj.slug }}
+                  to={locale === "es" ? "/es/proyectos/$slug" : "/pt/projetos/$slug"}
+                  params={{ slug: proj.slug }}
                   className="mt-5 inline-flex min-h-11 items-center gap-2 font-mono text-[11px] tracking-[0.22em] text-ink transition-colors hover:text-cyan md:mt-6"
                 >
                   {p.viewCase.toUpperCase()}
