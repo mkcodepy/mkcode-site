@@ -191,6 +191,60 @@
   50% { opacity: 0.9; transform: scale(1.12); }
 }
 
+@keyframes mk-terminal-cursor {
+  0%, 46% { opacity: 1; }
+  47%, 100% { opacity: 0.18; }
+}
+
+.mk-terminal-cursor {
+  animation: mk-terminal-cursor 900ms steps(1) infinite;
+}
+
+.mk-hub-field {
+  --hub-x: 50%;
+  --hub-y: 18%;
+  isolation: isolate;
+}
+
+.mk-hub-spotlight {
+  background:
+    radial-gradient(circle 440px at var(--hub-x) var(--hub-y), color-mix(in oklab, var(--brand) 13%, transparent), transparent 72%),
+    radial-gradient(circle 680px at 76% 22%, color-mix(in oklab, var(--cyan) 7%, transparent), transparent 68%);
+  transition: background 80ms linear;
+}
+
+.mk-character-halo {
+  background: radial-gradient(ellipse at center, color-mix(in oklab, var(--brand) 24%, transparent), transparent 67%);
+  filter: blur(22px);
+}
+
+.mk-interface-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--cyan) 70%, transparent), transparent);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--cyan) 30%, transparent);
+}
+
+.mk-link-module::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(220px circle at var(--hub-x, 50%) var(--hub-y, 50%), color-mix(in oklab, var(--cyan) 10%, transparent), transparent 72%);
+  opacity: 0;
+  transition: opacity var(--dur-2) ease;
+}
+
+.mk-link-module:hover::before,
+.mk-link-module:focus-visible::before {
+  opacity: 1;
+}
+
+@media (max-width: 639px) {
+  .mk-grid-lines {
+    background-size: 38px 38px;
+  }
+}
+
 /* ---- Matrix / terminal FX ---- */
 
 @keyframes mk-marquee {
