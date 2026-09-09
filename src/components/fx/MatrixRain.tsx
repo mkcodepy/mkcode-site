@@ -22,10 +22,15 @@ export function MatrixRain() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
 
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+    const constrained = connection?.saveData || connection?.effectiveType === "2g";
+
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let cols = 0;
     let drops: { y: number; speed: number; len: number; brightIdx: number }[] = [];
-    const fontSize = 15;
+    const fontSize = constrained ? 22 : window.innerWidth < 640 ? 19 : 15;
 
     function resize() {
       if (!canvas || !ctx) return;
@@ -56,6 +61,10 @@ export function MatrixRain() {
     function frame(now: number) {
       if (!ctx || !canvas) return;
       const dt = now - last;
+      if (constrained && dt < 42) {
+        raf = requestAnimationFrame(frame);
+        return;
+      }
       last = now;
 
       // fade previous frame — creates the trailing effect

@@ -158,6 +158,7 @@ function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const seg = pathname.split("/")[1];
   const showChrome = isLocale(seg);
+  const isHub = pathname === "/es" || pathname === "/es/" || pathname === "/pt" || pathname === "/pt/";
 
   // sync <html lang> for client nav
   useEffect(() => {
@@ -169,11 +170,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {showChrome ? <MatrixRain /> : null}
-      {showChrome ? <Header /> : null}
+      {showChrome && !isHub ? <Header /> : null}
       <main className="relative z-10 min-h-screen">
         <Outlet />
       </main>
-      {showChrome ? <Footer /> : null}
+      {showChrome && !isHub ? <Footer /> : null}
     </QueryClientProvider>
   );
 }

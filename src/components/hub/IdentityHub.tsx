@@ -197,7 +197,7 @@ export function IdentityHub() {
                 <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
                   {hubSocials.map((social) => social.href ? (
                     <a key={social.name} href={social.href} target={social.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-ink-2 transition-colors hover:text-cyan">
-                      {social.name === "Instagram" ? <Instagram size={14} /> : social.name === "GitHub" ? <Github size={14} /> : <Mail size={14} />}
+                      {social.name === "Instagram" ? <Instagram size={14} /> : <Mail size={14} />}
                       {social.name}
                     </a>
                   ) : null)}
