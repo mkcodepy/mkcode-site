@@ -258,6 +258,29 @@ function HubTopbar({ locale }: { locale: "es" | "pt" }) {
   );
 }
 
+function HeroControl({ to, href, primary, children }: { to?: string; href?: string; primary?: boolean; children: ReactNode }) {
+  const classes = `mk-ctrl group inline-flex min-h-11 items-center gap-2.5 rounded-md border px-4 font-mono text-[10px] tracking-[0.18em] transition-colors sm:text-[11px] ${
+    primary
+      ? "border-cyan/45 bg-cyan/10 text-ink hover:border-cyan hover:bg-cyan/15"
+      : "border-line bg-surface/60 text-ink-2 hover:border-line-2 hover:text-ink"
+  }`;
+  const inner = (
+    <>
+      <span aria-hidden className={`mk-ctrl-signal h-1.5 w-1.5 rounded-full ${primary ? "bg-cyan" : "bg-ink-3"}`} />
+      {children}
+      <ArrowUpRight size={13} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+    </>
+  );
+  if (to) {
+    return (
+      <motion.div whileTap={{ scale: 0.97 }}>
+        <Link to={to} className={classes}>{inner}</Link>
+      </motion.div>
+    );
+  }
+  return <motion.a href={href} whileTap={{ scale: 0.97 }} className={classes}>{inner}</motion.a>;
+}
+
 function SectionLabel({ id, index, children }: { id?: string; index: string; children: ReactNode }) {
   return <h2 id={id} className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan"><span className="text-ink-3">{index}</span><span className="h-px w-6 bg-line-2" />{children}</h2>;
 }
