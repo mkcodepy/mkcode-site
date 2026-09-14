@@ -1,7 +1,7 @@
 # MK CODE desktop and tablet composition refinement
 
 ## Goal
-Refine only the current one-page layout at tablet and desktop widths so the hero feels centered, compact, integrated, and editorial. Preserve the existing identity, content sections, character artwork, animations, mobile cards, language switcher, and mobile composition.
+Refine the current one-page layout at tablet and desktop widths so the hero feels centered, compact, integrated, and editorial. Enhance the hero and primary-action motion across mobile and desktop without changing the established mobile composition. Preserve the existing identity, content sections, character artwork, mobile cards, language switcher, and design system.
 
 ## Confirmed current issues
 - At desktop widths, the hero has a `720px` minimum height even when its content needs less space.
@@ -37,13 +37,23 @@ Refine only the current one-page layout at tablet and desktop widths so the hero
 - Use the line and glow to bridge the content and character subtly, without increasing neon intensity.
 - Prevent the character from becoming oversized at 1440px and wider.
 
-### 5. Unify page width and section transitions
+### 5. Upgrade hero and CTA motion across all devices
+- Build on the current Framer Motion, glitch, scramble, typewriter, grid, spotlight, and parallax system instead of introducing a separate visual language.
+- Give the hero a coordinated system-boot sequence: technical label and terminal signal first, controlled headline reveal next, supporting identity details after, then the primary actions and character.
+- Add subtle continuous life through restrained interface-line pulses, scanning/data accents, character depth movement, and responsive light movement rather than heavy neon or constant large transforms.
+- Make the two hero actions feel like active system controls with precise line travel, arrow movement, signal illumination, and tactile press feedback.
+- On mobile, preserve all current dimensions and placement while improving the timing, depth, and touch response of the hero, character, and CTAs.
+- On desktop, use the animation to visually connect the text and character across the two-column composition.
+- Keep effects limited to transform, opacity, and lightweight CSS where possible; avoid expensive blur animation, layout animation, or dense canvas additions.
+- Respect reduced-motion and constrained connections by removing continuous movement while retaining a polished static hierarchy.
+
+### 6. Unify page width and section transitions
 - Align the hero, top bar, direct-access cards, tools, and footer to the same centered `1200–1280px` content system.
 - Reduce the gap between the hero and `01 — ACCESO DIRECTO` so the next section enters naturally.
 - Review tablet/desktop section spacing and card-grid rhythm only; preserve mobile card styling and content structure.
 
 ## Responsive rules
-- **Below 768px:** preserve the current mobile composition and card layout.
+- **Below 768px:** preserve the current mobile composition and card layout while enhancing hero/CTA motion without changing their proportions or spacing.
 - **768–1023px:** use a controlled transitional composition with balanced text and character sizing before space becomes cramped.
 - **1024–1439px:** use the compact two-column hero with fluid typography and a bounded character.
 - **1440px and above:** keep the entire composition centered and capped; no element may drift toward viewport edges.
@@ -53,4 +63,5 @@ Refine only the current one-page layout at tablet and desktop widths so the hero
 - Review tablet and desktop at `768`, `834`, `1024`, `1280`, `1440`, and `1920px`.
 - Confirm no horizontal overflow, text clipping, character stretching, action overlap, or giant transition gaps.
 - Confirm the character remains proportional, the first section follows the hero naturally, and reduced-motion behavior still works.
+- Confirm the enhanced animation remains smooth on mobile, avoids layout shift, and scales back for reduced-motion or constrained connections.
 - Check keyboard focus, touch target sizing, one-H1 structure, console errors, and image loading before completion.
