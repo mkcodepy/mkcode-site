@@ -77,6 +77,8 @@ export const hubCopy = {
     unavailable: "LINK PENDIENTE",
     external: "ABRIR",
     footer: "Software · AI · Digital products",
+    ctaProjects: "VER PROYECTOS",
+    ctaContact: "HABLAR CONMIGO",
   },
   pt: {
     role: "Marcos / MK CODE",
@@ -93,5 +95,7 @@ export const hubCopy = {
     unavailable: "LINK PENDENTE",
     external: "ABRIR",
     footer: "Software · AI · Digital products",
+    ctaProjects: "VER PROJETOS",
+    ctaContact: "FALAR COMIGO",
   },
 } satisfies Record<Locale, Record<string, string>>;
