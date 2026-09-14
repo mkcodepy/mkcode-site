@@ -95,5 +95,7 @@ export const hubCopy = {
     unavailable: "LINK PENDENTE",
     external: "ABRIR",
     footer: "Software · AI · Digital products",
+    ctaProjects: "VER PROJETOS",
+    ctaContact: "FALAR COMIGO",
   },
 } satisfies Record<Locale, Record<string, string>>;
