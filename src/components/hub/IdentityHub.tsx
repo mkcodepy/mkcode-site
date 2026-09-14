@@ -78,7 +78,7 @@ export function IdentityHub() {
       <HubTopbar locale={locale} />
 
       <main className="relative z-10">
-        <section className="relative min-h-[560px] overflow-hidden px-[max(1.15rem,env(safe-area-inset-left))] pb-8 pt-[calc(5rem+env(safe-area-inset-top))] sm:min-h-[620px] sm:px-8 sm:pt-28 md:min-h-[540px] md:pb-12 lg:min-h-[580px] lg:px-10 lg:pt-32">
+        <section className="relative min-h-[560px] overflow-hidden px-[max(1.15rem,env(safe-area-inset-left))] pb-8 pt-[calc(5rem+env(safe-area-inset-top))] sm:min-h-[620px] sm:px-8 sm:pt-28 md:min-h-[520px] md:pb-10 md:pt-24 lg:min-h-[560px] lg:px-10 lg:pt-26">
           <div className="mx-auto grid h-full max-w-[1280px] items-center gap-0 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:gap-6 lg:grid-cols-[minmax(0,55fr)_minmax(0,45fr)] lg:gap-10">
             <div className="relative z-20 max-w-[660px] pt-3 sm:pt-8 md:pt-0">
               <motion.div
@@ -136,7 +136,7 @@ export function IdentityHub() {
               </div>
             </div>
 
-            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 top-28 z-10 md:relative md:inset-auto md:h-[clamp(400px,44vw,530px)] md:w-full">
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 top-28 z-10 md:relative md:inset-auto md:h-[clamp(380px,38vw,470px)] md:w-full">
               <div className="mk-character-halo absolute bottom-10 right-[-18%] h-[70%] w-[95%] sm:right-[-7%] md:inset-x-[4%] md:bottom-6 md:h-[82%] md:w-[92%]" />
               <motion.div
                 initial={{ opacity: 0, x: 28, scale: 0.98 }}
