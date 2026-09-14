@@ -78,9 +78,9 @@ export function IdentityHub() {
       <HubTopbar locale={locale} />
 
       <main className="relative z-10">
-        <section className="relative min-h-[560px] overflow-hidden px-[max(1.15rem,env(safe-area-inset-left))] pb-8 pt-[calc(5rem+env(safe-area-inset-top))] sm:min-h-[690px] sm:px-8 sm:pt-28 lg:min-h-[720px] lg:px-10 lg:pt-32">
-          <div className="mx-auto grid h-full max-w-[1280px] lg:grid-cols-[minmax(0,0.9fr)_minmax(460px,1.1fr)] lg:items-center">
-            <div className="relative z-20 max-w-[660px] pt-3 sm:pt-8 lg:pt-0">
+        <section className="relative min-h-[560px] overflow-hidden px-[max(1.15rem,env(safe-area-inset-left))] pb-8 pt-[calc(5rem+env(safe-area-inset-top))] sm:min-h-[620px] sm:px-8 sm:pt-28 md:min-h-[540px] md:pb-12 lg:min-h-[580px] lg:px-10 lg:pt-32">
+          <div className="mx-auto grid h-full max-w-[1280px] items-center gap-0 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:gap-6 lg:grid-cols-[minmax(0,55fr)_minmax(0,45fr)] lg:gap-10">
+            <div className="relative z-20 max-w-[660px] pt-3 sm:pt-8 md:pt-0">
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -96,10 +96,15 @@ export function IdentityHub() {
                 {!system.done ? <span aria-hidden className="mk-terminal-cursor ml-1 inline-block h-[0.9em] w-[0.55ch] bg-cyan align-middle" /> : null}
               </div>
 
-              <h1 className="mt-5 font-display text-[clamp(3.25rem,16vw,6.7rem)] font-bold leading-[0.84] tracking-[-0.04em] text-ink sm:mt-7 lg:text-[7.7rem]">
+              <motion.h1
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-5 font-display text-[clamp(3.25rem,16vw,6.7rem)] font-bold leading-[0.84] tracking-[-0.04em] text-ink sm:mt-7 md:text-[clamp(3.6rem,7vw,5.9rem)]"
+              >
                 <GlitchWord>MK</GlitchWord>
                 <span className="block text-cyan">CODE</span>
-              </h1>
+              </motion.h1>
 
               <div className="mt-5 max-w-[15.5rem] sm:mt-7 sm:max-w-xl">
                 <p className="min-h-5 font-mono text-[10px] uppercase tracking-[0.18em] text-cyan sm:text-[11px]">
@@ -113,20 +118,32 @@ export function IdentityHub() {
                 </p>
               </div>
 
-              <div className="mt-5 flex flex-col items-start gap-2 font-mono text-[9px] tracking-[0.16em] text-ink-2 sm:mt-7 sm:flex-row sm:items-center sm:gap-5 sm:text-[10px]">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-5 flex flex-wrap items-center gap-2.5 sm:mt-7 sm:gap-3"
+              >
+                <HeroControl to={locale === "es" ? "/es/proyectos" : "/pt/projetos"} primary>
+                  {copy.ctaProjects}
+                </HeroControl>
+                <HeroControl href="mailto:contacto@mkcode.com.py">{copy.ctaContact}</HeroControl>
+              </motion.div>
+
+              <div className="mt-5 flex flex-col items-start gap-2 font-mono text-[9px] tracking-[0.16em] text-ink-2 sm:mt-6 sm:flex-row sm:items-center sm:gap-5 sm:text-[10px]">
                 <span className="inline-flex items-center gap-2 text-ink"><StatusDot color="green" />{copy.online}</span>
                 <span>{copy.location}</span>
               </div>
             </div>
 
-            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 top-28 z-10 lg:inset-y-0 lg:left-auto lg:right-0 lg:w-[58%]">
-              <div className="mk-character-halo absolute bottom-10 right-[-18%] h-[70%] w-[95%] sm:right-[-7%] lg:bottom-6 lg:right-[-2%] lg:h-[88%] lg:w-[90%]" />
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 top-28 z-10 md:relative md:inset-auto md:h-[clamp(400px,44vw,530px)] md:w-full">
+              <div className="mk-character-halo absolute bottom-10 right-[-18%] h-[70%] w-[95%] sm:right-[-7%] md:inset-x-[4%] md:bottom-6 md:h-[82%] md:w-[92%]" />
               <motion.div
                 initial={{ opacity: 0, x: 28, scale: 0.98 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ duration: 0.9, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.9, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
                 style={{ x: characterX, y: characterY }}
-                className="absolute bottom-[-62px] right-[-105px] h-[470px] w-[366px] min-[370px]:right-[-86px] min-[370px]:h-[500px] min-[370px]:w-[390px] sm:bottom-[-72px] sm:right-[-20px] sm:h-[650px] sm:w-[500px] lg:bottom-[-60px] lg:right-[1vw] lg:h-[780px] lg:w-[600px]"
+                className="absolute bottom-[-62px] right-[-105px] h-[470px] w-[366px] min-[370px]:right-[-86px] min-[370px]:h-[500px] min-[370px]:w-[390px] sm:bottom-[-72px] sm:right-[-20px] sm:h-[650px] sm:w-[500px] md:inset-x-0 md:bottom-[-48px] md:right-auto md:mx-auto md:h-[calc(100%+96px)] md:w-full"
               >
                 <img
                   src={characterAsset.url}
@@ -138,8 +155,8 @@ export function IdentityHub() {
                   className="h-full w-full object-contain object-bottom"
                 />
               </motion.div>
-              <div className="mk-interface-line absolute bottom-[19%] right-0 w-[64%] lg:bottom-[24%]" />
-              <div className="absolute bottom-[16%] right-4 z-20 font-mono text-[8px] tracking-[0.22em] text-cyan/70 sm:right-10 lg:bottom-[21%] lg:right-20 lg:text-[9px]">
+              <div className="mk-interface-line mk-interface-line--live absolute bottom-[19%] right-0 w-[64%] md:bottom-[14%] md:left-[-14%] md:w-[78%]" />
+              <div className="absolute bottom-[16%] right-4 z-20 font-mono text-[8px] tracking-[0.22em] text-cyan/70 sm:right-10 md:bottom-[10%] md:right-2 md:text-[9px]">
                 HUMAN / SYSTEM INTERFACE
               </div>
             </div>
