@@ -113,7 +113,7 @@ export function IdentityHub() {
                 <p className="mt-2 font-display text-[15px] font-medium leading-snug text-ink sm:text-xl">
                   {copy.disciplines}
                 </p>
-                <p className="mt-2 max-w-[20rem] text-[13px] leading-relaxed text-ink-2 sm:max-w-md sm:text-base">
+                <p className="mt-2 max-w-[16.5rem] text-[13px] leading-relaxed text-ink-2 sm:max-w-md sm:text-base">
                   {copy.statement}
                 </p>
               </div>
