@@ -1,67 +1,78 @@
-# MK CODE desktop and tablet composition refinement
+# MK CODE — second pass premium completion
 
 ## Goal
-Refine the current one-page layout at tablet and desktop widths so the hero feels centered, compact, integrated, and editorial. Enhance the hero and primary-action motion across mobile and desktop without changing the established mobile composition. Preserve the existing identity, content sections, character artwork, mobile cards, language switcher, and design system.
+Complete the current bilingual one-page experience without redesigning it. Preserve the approved dark technical identity, cyan system language, typography, character artwork, content, routes, cards, two-column hero, Matrix ambience, and existing motion primitives while strengthening composition, interaction, continuity, and finish across mobile, tablet, desktop, and ultrawide.
 
-## Confirmed current issues
-- At desktop widths, the hero has a `720px` minimum height even when its content needs less space.
-- The character is positioned in an absolute layer tied to the right side of the hero rather than its visual column, creating excessive central space.
-- The desktop headline is fixed at `7.7rem`, making the left side feel disconnected from the character.
-- Main sections use a `1280px` content width, while the top bar uses `1360px`, slightly weakening alignment across the page.
-- The “Acceso directo” section begins below a larger-than-needed hero boundary.
+## Confirmed audit findings
+- The current page already has one H1, loaded character artwork, working ES/PT routes, no horizontal overflow or console errors across `320–2560px`, and tap targets generally at least `44px`.
+- Hero height is now controlled at roughly `552–614px` from tablet through ultrawide, and all principal areas use the same capped `1280px` system.
+- At `375–430px`, the absolute character crosses the action area; this creates the intended depth but weakens control contrast and legibility.
+- At `768px`, the hero technically splits into two columns, but the controls stack while the upper visual column carries unused space, so tablet still reads as a transition rather than a fully composed layout.
+- At `1024px`, four direct-access cards fit but secondary text truncates aggressively; at larger widths the sections are structurally sound yet visually understated compared with the hero.
+- The hero reveal is only partially sequenced: status, headline, actions, and character have independent delays, while identity, supporting copy, status/location, and interface details do not share one deliberate boot rhythm.
+- Direct-access, tools, social endpoints, section labels, and footer use consistent tokens but remain visually basic. Missing GitHub and X destinations are correctly left inactive and must stay uninvented.
+- Matrix Rain already handles reduced motion, constrained connections, DPR, resizing, and hidden tabs; it should be tuned only if visual review shows competition with content.
 
 ## Implementation
 
-### 1. Recompose the hero for tablet and desktop
-- Keep the current mobile layout and its absolute character treatment below the tablet breakpoint.
-- From tablet upward, create a true centered two-column composition inside the existing maximum-width system.
-- At desktop, use an approximately `55% / 45%` content-to-visual split with both columns participating in the same grid.
-- Make the character column relative to the centered container, not the viewport edge.
-- Keep the character’s original aspect ratio, cap its rendered size, and use controlled bottom cropping around the upper legs where needed.
-- Position the character closer to the copy without allowing overlap or drift on ultrawide screens.
+### 1. Finish the hero composition
+- Keep the existing two-column structure and compact height, but refine the grid gap, copy width, headline clamp, and visual-column alignment at `768`, `834`, `912`, `1024`, `1280`, `1440`, `1600`, `1920`, and `2560px`.
+- Replace brittle mobile character offsets with controlled responsive positioning that preserves the current crop and identity while protecting CTA legibility.
+- Keep the character proportional and capped; tune vertical position, halo, interface line, and label as one visual assembly anchored to the shared container.
+- Use the interface line and local light as a subtle bridge toward the text so the two columns read as one composition, without stronger neon or animated blur.
+- Preserve the mobile composition, correcting only proven overlap, crop, or readability problems.
 
-### 2. Tighten desktop hierarchy and height
-- Reduce the desktop `MK CODE` headline to a strong but controlled responsive size.
-- Preserve the existing system label, terminal line, identity line, disciplines, supporting copy, status, and location.
-- Target a hero composition around `560–620px` tall on desktop, with a graceful tablet height rather than a full-screen presentation.
-- Preserve the existing entrance, scramble, typewriter, pointer spotlight, and character parallax behaviors.
+### 2. Orchestrate a fast system-boot sequence
+- Define one short sequence: system status → terminal signal → headline → identity/disciplines → description → controls → character → interface signal.
+- Coordinate the existing Framer Motion, scramble, typewriter, glitch, cursor, line scan, and parallax effects instead of adding a second animation system.
+- Keep the full reveal fast and immediately usable; use opacity and small transforms, reserve continuous motion for subtle line/signal/parallax life, and avoid scale spectacle, shake, particles, layout animation, or animated blur.
+- Provide a stable reduced-motion state with content visible immediately and no continuous movement; retain constrained-connection safeguards.
 
-### 3. Add compact hero actions
-- Add `VER PROYECTOS →` and `HABLAR CONMIGO` below the supporting copy using the existing projects route and contact email.
-- Add equivalent Portuguese labels on `/pt`.
-- Style them as compact MK CODE system controls using the current border, mono-label, cyan, focus, and motion language—not generic SaaS buttons.
-- Keep their spacing and touch targets accessible without disturbing the mobile card system.
+### 3. Turn hero actions into signature MK CODE controls
+- Preserve the current compact size, labels, project routes, and email action.
+- Add restrained corner markers, active signal state, border/data-line travel, arrow movement, tactile press feedback, and a strong keyboard focus treatment using semantic tokens.
+- Choose side-by-side or stacked presentation by available measured width and translated label length, not by one blanket tablet breakpoint.
+- Ensure the character can never lower the controls' contrast or block their pointer area.
 
-### 4. Integrate the character visually
-- Reposition the existing halo, interface line, and `HUMAN / SYSTEM INTERFACE` detail inside the visual column.
-- Use the line and glow to bridge the content and character subtly, without increasing neon intensity.
-- Prevent the character from becoming oversized at 1440px and wider.
+### 4. Refine Direct Access modules
+- Preserve the four existing destinations and mobile reading order.
+- Improve card proportion, internal grid, title/description hierarchy, index placement, icon housing, endpoint state, and arrow alignment.
+- Give available links a precise border response, small positional lift, line sweep, signal activation, and arrow travel; keep inactive links visually supported but clearly pending and non-interactive.
+- At tablet/laptop widths, prevent awkward description truncation by adjusting grid density and card internals rather than shrinking text.
+- Keep static cards premium and readable without depending on hover.
 
-### 5. Upgrade hero and CTA motion across all devices
-- Build on the current Framer Motion, glitch, scramble, typewriter, grid, spotlight, and parallax system instead of introducing a separate visual language.
-- Give the hero a coordinated system-boot sequence: technical label and terminal signal first, controlled headline reveal next, supporting identity details after, then the primary actions and character.
-- Add subtle continuous life through restrained interface-line pulses, scanning/data accents, character depth movement, and responsive light movement rather than heavy neon or constant large transforms.
-- Make the two hero actions feel like active system controls with precise line travel, arrow movement, signal illumination, and tactile press feedback.
-- On mobile, preserve all current dimensions and placement while improving the timing, depth, and touch response of the hero, character, and CTAs.
-- On desktop, use the animation to visually connect the text and character across the two-column composition.
-- Keep effects limited to transform, opacity, and lightweight CSS where possible; avoid expensive blur animation, layout animation, or dense canvas additions.
-- Respect reduced-motion and constrained connections by removing continuous movement while retaining a polished static hierarchy.
+### 5. Strengthen Tools as a runtime inventory
+- Keep the real four tools and their existing destinations; do not invent products, categories, logos, or recommendations.
+- Recompose the section as a compact technical inventory using the existing category data, stronger metadata rhythm, consistent icon/index treatment, and purposeful open/external feedback.
+- Use BUILD, AI, and current configured categories only; introduce broader grouping only if supported by actual content.
+- Match Direct Access interaction language while retaining a distinct, denser inventory character.
 
-### 6. Unify page width and section transitions
-- Align the hero, top bar, direct-access cards, tools, and footer to the same centered `1200–1280px` content system.
-- Reduce the gap between the hero and `01 — ACCESO DIRECTO` so the next section enters naturally.
-- Review tablet/desktop section spacing and card-grid rhythm only; preserve mobile card styling and content structure.
+### 6. Unify social endpoints and footer
+- Present Instagram, email, and unavailable GitHub/X as compact system endpoints rather than generic social cards.
+- Make active, external, and pending states immediately understandable without adding explanatory copy or invented URLs.
+- Refine the footer into a deliberate compact closing band with current identity, system metadata, bilingual copy, and a clear visual endpoint.
+- Preserve the email action and external-link behavior, adding consistent focus, hover, and touch feedback.
 
-## Responsive rules
-- **Below 768px:** preserve the current mobile composition and card layout while enhancing hero/CTA motion without changing their proportions or spacing.
-- **768–1023px:** use a controlled transitional composition with balanced text and character sizing before space becomes cramped.
-- **1024–1439px:** use the compact two-column hero with fluid typography and a bounded character.
-- **1440px and above:** keep the entire composition centered and capped; no element may drift toward viewport edges.
+### 7. Connect sections into one interface
+- Normalize vertical rhythm from Hero → Direct Access → Tools → Connect → Footer across mobile, tablet, laptop, and desktop.
+- Upgrade section labels with a consistent index, rule, signal marker, and restrained mono metadata treatment.
+- Use existing grid lines, borders, and small interface details to close and open sections; remove arbitrary blank bands without turning page sections into floating cards.
+- Tune the background hierarchy so grid, Matrix Rain, pointer spotlight, local halo, and separators support content rather than compete with it.
 
-## Validation
-- Visually review at `320`, `375`, and `430px` to confirm no mobile regression.
-- Review tablet and desktop at `768`, `834`, `1024`, `1280`, `1440`, and `1920px`.
-- Confirm no horizontal overflow, text clipping, character stretching, action overlap, or giant transition gaps.
-- Confirm the character remains proportional, the first section follows the hero naturally, and reduced-motion behavior still works.
-- Confirm the enhanced animation remains smooth on mobile, avoids layout shift, and scales back for reduced-motion or constrained connections.
-- Check keyboard focus, touch target sizing, one-H1 structure, console errors, and image loading before completion.
+### 8. Typography and interaction polish
+- Review display/mono contrast, line lengths, metadata legibility, translated label fit, paragraph widths, and heading hierarchy at every target width.
+- Unify navigation, language switch, cards, tools, social links, arrows, status dots, and focus states into one engineered interaction language.
+- Animate only meaningful state changes and in-view entrances; preserve stable dimensions to avoid layout shift.
+- Keep implementation within the current dependencies and semantic design tokens.
+
+## Technical scope
+- Primary work: `src/components/hub/IdentityHub.tsx`, `src/styles.css`, and localized hub configuration where interface metadata must be translated.
+- Reuse current `framer-motion`, motion preference hooks, route links, character asset, Matrix Rain, and design tokens.
+- Split focused internal hub primitives if the main component becomes difficult to maintain; do not alter unrelated institutional pages or routes.
+- Do not replace artwork, add Canvas/WebGL, add packages, invent external destinations, or expand the page's content scope.
+
+## Validation and final review
+- Test Spanish and Portuguese at `320`, `360`, `375`, `390`, `430`, `768`, `820`, `834`, `912`, `1024`, `1280`, `1440`, `1600`, `1920`, and `2560px` where practical.
+- Verify no horizontal overflow, clipping, unintended overlap, stretched artwork, broken routes, failed images, dead email action, console errors, or layout shifts.
+- Confirm one H1, visible keyboard focus, logical tab order, adequate tap areas, non-interactive pending endpoints, reduced-motion behavior, and lightweight continuous effects.
+- Capture and critically review final screenshots at `375`, `430`, `768`, `1024`, `1440`, and `1920px`; correct remaining spacing, alignment, hierarchy, character integration, tablet compromise, generic modules, and weak section endings before completion.
