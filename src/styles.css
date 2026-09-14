@@ -239,6 +239,64 @@
   opacity: 1;
 }
 
+/* ---- Hero system controls ---- */
+
+@keyframes mk-line-scan {
+  0% { transform: translateX(-100%); opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes mk-signal-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+.mk-interface-line--live {
+  position: relative;
+  overflow: hidden;
+}
+.mk-interface-line--live::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--cyan) 95%, transparent), transparent);
+  animation: mk-line-scan 4.2s ease-in-out infinite;
+}
+
+.mk-ctrl {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.mk-ctrl::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  transition: transform var(--dur-2, 220ms) ease;
+}
+.mk-ctrl:hover::before,
+.mk-ctrl:focus-visible::before {
+  transform: scaleX(1);
+}
+.mk-ctrl-signal {
+  animation: mk-signal-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mk-interface-line--live::after,
+  .mk-ctrl-signal {
+    animation: none;
+  }
+}
+
 @media (max-width: 639px) {
   .mk-grid-lines {
     background-size: 38px 38px;
