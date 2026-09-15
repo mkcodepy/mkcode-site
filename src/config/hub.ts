@@ -79,6 +79,10 @@ export const hubCopy = {
     footer: "Software · AI · Digital products",
     ctaProjects: "VER PROYECTOS",
     ctaContact: "HABLAR CONMIGO",
+    interface: "HUMAN / SYSTEM INTERFACE",
+    signalArray: "SIGNAL ARRAY / 04",
+    nodeState: "NODE / READY",
+    endpoint: "ENDPOINT",
   },
   pt: {
     role: "Marcos / MK CODE",
@@ -97,5 +101,9 @@ export const hubCopy = {
     footer: "Software · AI · Digital products",
     ctaProjects: "VER PROJETOS",
     ctaContact: "FALAR COMIGO",
+    interface: "HUMAN / SYSTEM INTERFACE",
+    signalArray: "SIGNAL ARRAY / 04",
+    nodeState: "NODE / READY",
+    endpoint: "ENDPOINT",
   },
 } satisfies Record<Locale, Record<string, string>>;
