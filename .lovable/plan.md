@@ -3,6 +3,13 @@
 ## Goal
 Complete the current bilingual one-page experience without redesigning it. Preserve the approved dark technical identity, cyan system language, typography, character artwork, content, routes, cards, two-column hero, Matrix ambience, and existing motion primitives while strengthening composition, interaction, continuity, and finish across mobile, tablet, desktop, and ultrawide.
 
+## Art-direction constraints
+- Preserve current copy and destinations unless a technical correction is necessary; do not add marketing copy to fill space.
+- Keep Direct Access, Tools, Connect, and Footer visually distinct while sharing one MK CODE interaction and typography language; do not convert every section into the same card pattern.
+- On mobile, protect text and CTA legibility by repositioning or resizing the character before compressing typography or content.
+- Treat `768–912px` as a dedicated tablet composition; controls may stack when translated labels need width.
+- Add no decorative effect unless it improves hierarchy, interaction, or spatial integration. No added neon intensity, particles, animated blur, HUD clutter, or gratuitous grids.
+
 ## Confirmed audit findings
 - The current page already has one H1, loaded character artwork, working ES/PT routes, no horizontal overflow or console errors across `320–2560px`, and tap targets generally at least `44px`.
 - Hero height is now controlled at roughly `552–614px` from tablet through ultrawide, and all principal areas use the same capped `1280px` system.
@@ -66,6 +73,7 @@ Complete the current bilingual one-page experience without redesigning it. Prese
 - Keep implementation within the current dependencies and semantic design tokens.
 
 ## Technical scope
+- Create a private recovery checkpoint of the current successful source state before implementation.
 - Primary work: `src/components/hub/IdentityHub.tsx`, `src/styles.css`, and localized hub configuration where interface metadata must be translated.
 - Reuse current `framer-motion`, motion preference hooks, route links, character asset, Matrix Rain, and design tokens.
 - Split focused internal hub primitives if the main component becomes difficult to maintain; do not alter unrelated institutional pages or routes.
@@ -76,3 +84,4 @@ Complete the current bilingual one-page experience without redesigning it. Prese
 - Verify no horizontal overflow, clipping, unintended overlap, stretched artwork, broken routes, failed images, dead email action, console errors, or layout shifts.
 - Confirm one H1, visible keyboard focus, logical tab order, adequate tap areas, non-interactive pending endpoints, reduced-motion behavior, and lightweight continuous effects.
 - Capture and critically review final screenshots at `375`, `430`, `768`, `1024`, `1440`, and `1920px`; correct remaining spacing, alignment, hierarchy, character integration, tablet compromise, generic modules, and weak section endings before completion.
+- Judge each screenshot as art direction, not only technical correctness: every viewport must feel intentional, no area should read as a generic developer/AI template, no supporting section should feel unfinished beside the hero, and the page must remain one coherent interface through the footer.
