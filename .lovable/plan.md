@@ -73,7 +73,7 @@ Complete the current bilingual one-page experience without redesigning it. Prese
 - Keep implementation within the current dependencies and semantic design tokens.
 
 ## Technical scope
-- Create a private recovery checkpoint of the current successful source state before implementation.
+- Record the exact current Git recovery commit SHA before implementation; do not mutate Git history or create commits manually.
 - Primary work: `src/components/hub/IdentityHub.tsx`, `src/styles.css`, and localized hub configuration where interface metadata must be translated.
 - Reuse current `framer-motion`, motion preference hooks, route links, character asset, Matrix Rain, and design tokens.
 - Split focused internal hub primitives if the main component becomes difficult to maintain; do not alter unrelated institutional pages or routes.
@@ -85,3 +85,5 @@ Complete the current bilingual one-page experience without redesigning it. Prese
 - Confirm one H1, visible keyboard focus, logical tab order, adequate tap areas, non-interactive pending endpoints, reduced-motion behavior, and lightweight continuous effects.
 - Capture and critically review final screenshots at `375`, `430`, `768`, `1024`, `1440`, and `1920px`; correct remaining spacing, alignment, hierarchy, character integration, tablet compromise, generic modules, and weak section endings before completion.
 - Judge each screenshot as art direction, not only technical correctness: every viewport must feel intentional, no area should read as a generic developer/AI template, no supporting section should feel unfinished beside the hero, and the page must remain one coherent interface through the footer.
+- During `1440`, `1920`, and `2560px` review, explicitly verify that typography, character scale, and content width remain capped rather than growing indefinitely with the viewport.
+- Final report: recovery commit SHA, final commit SHA available after the managed changes, files changed, viewport issues found and corrected, and any remaining visual compromises.
