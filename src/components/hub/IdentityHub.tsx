@@ -121,7 +121,7 @@ export function IdentityHub() {
 
               <motion.div
                 {...reveal(0.3, 8)}
-                className="relative z-30 mt-5 flex max-w-[25rem] flex-wrap items-center gap-2.5 sm:mt-7 sm:gap-3 md:flex-col md:items-start min-[880px]:flex-row"
+                className="relative z-30 mt-5 flex max-w-[25rem] flex-col items-start gap-2.5 sm:mt-7 sm:flex-row sm:items-center sm:gap-3 md:flex-col md:items-start min-[880px]:flex-row"
               >
                 <HeroControl to={locale === "es" ? "/es/proyectos" : "/pt/projetos"} primary>
                   {copy.ctaProjects}
