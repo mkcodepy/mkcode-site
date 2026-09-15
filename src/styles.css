@@ -253,6 +253,13 @@
   50% { opacity: 1; }
 }
 
+@keyframes mk-data-travel {
+  0% { transform: translateX(-120%); opacity: 0; }
+  18% { opacity: 0.75; }
+  82% { opacity: 0.75; }
+  100% { transform: translateX(220%); opacity: 0; }
+}
+
 .mk-interface-line--live {
   position: relative;
   overflow: hidden;
@@ -270,6 +277,16 @@
   overflow: hidden;
   isolation: isolate;
 }
+.mk-ctrl::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--cyan) 78%, transparent), transparent);
+  opacity: 0;
+}
 .mk-ctrl::before {
   content: "";
   position: absolute;
@@ -286,13 +303,76 @@
 .mk-ctrl:focus-visible::before {
   transform: scaleX(1);
 }
+.mk-ctrl:hover::after,
+.mk-ctrl:focus-visible::after {
+  animation: mk-data-travel 760ms var(--ease-out-expo) 1;
+}
 .mk-ctrl-signal {
   animation: mk-signal-pulse 2.4s ease-in-out infinite;
 }
 
+.mk-corner-markers {
+  background:
+    linear-gradient(var(--cyan), var(--cyan)) left 5px top 5px / 5px 1px no-repeat,
+    linear-gradient(var(--cyan), var(--cyan)) left 5px top 5px / 1px 5px no-repeat,
+    linear-gradient(var(--cyan), var(--cyan)) right 5px bottom 5px / 5px 1px no-repeat,
+    linear-gradient(var(--cyan), var(--cyan)) right 5px bottom 5px / 1px 5px no-repeat;
+}
+
+.mk-module {
+  --module-x: 0px;
+  transition:
+    border-color var(--dur-2) var(--ease-out-expo),
+    background-color var(--dur-2) var(--ease-out-expo),
+    transform var(--dur-2) var(--ease-out-expo);
+}
+.mk-module::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: linear-gradient(90deg, var(--cyan), color-mix(in oklab, var(--brand) 35%, transparent), transparent 82%);
+  transition: transform var(--dur-2) var(--ease-out-expo);
+}
+.mk-module:hover,
+.mk-module:focus-visible {
+  transform: translateY(-2px);
+}
+.mk-module:hover::after,
+.mk-module:focus-visible::after {
+  transform: scaleX(1);
+}
+.mk-module[aria-disabled="true"] {
+  transform: none;
+}
+
+.mk-endpoint {
+  position: relative;
+}
+.mk-endpoint::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 4px;
+  height: 1px;
+  transform: scaleX(0);
+  background: var(--cyan);
+  transform-origin: left;
+  transition: transform var(--dur-2) var(--ease-out-expo);
+}
+.mk-endpoint:hover::after,
+.mk-endpoint:focus-visible::after {
+  transform: scaleX(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mk-interface-line--live::after,
-  .mk-ctrl-signal {
+  .mk-ctrl-signal,
+  .mk-ctrl:hover::after,
+  .mk-ctrl:focus-visible::after {
     animation: none;
   }
 }
